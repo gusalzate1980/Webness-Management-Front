@@ -1,17 +1,23 @@
 .tree-link {
   text-decoration: none;
-  color: var(--p-text-color);
-  font-size: 14px;
+  color: inherit;
+  outline: none;
+}
+
+.tree-link:visited {
+  color: inherit;
+}
+
+.tree-link:focus {
+  outline: none;
+}
+
+.tree-link:active {
+  background: transparent;
 }
 
 .tree-link:hover {
-  background-color: var(--p-surface-200);
-}
-
-.active-link {
-  background-color: var(--p-primary-100);
-  color: var(--p-primary-700);
-  font-weight: 600;
+  text-decoration: none;
 }
 
 .p-tree .p-tree-node-content {

@@ -27,7 +27,7 @@ export class Sidebar
             label: 'Management',
             icon: 'pi pi-id-card',
             expanded: true,
-            data: { url: '/dashboard' }
+            data: { url: '/main/employees/management' }
         },
         {
             label: 'Career',
@@ -37,17 +37,17 @@ export class Sidebar
             {
                 label: 'Give Feedback',
                 icon: 'pi pi-arrow-right',
-                data: { url: '/dashboard' }
+                data: { url: '/main/employees/career/give-feedback' }
             },
             {
                 label: 'My Feedback',
                 icon: 'pi pi-arrow-left',
-                data: { url: '/dashboard' }
+                data: { url: '/main/employees/career/my-feedback' }
             },
             {
                 label: 'One on One',
                 icon: 'pi pi-comments',
-                data: { url: '/dashboard' }
+                data: { url: '/main/employees/career/one-on-one' }
             }]
         }]
     },
