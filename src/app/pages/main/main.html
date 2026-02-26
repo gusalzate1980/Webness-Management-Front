@@ -1,11 +1,10 @@
 <div class="header">
-  <button pButton icon="pi pi-bars" (click)="toggleDrawer()" label="Menú"></button>
+  <p-button (click)="OnDrawerOpen()" icon="pi pi-bars" />
   <h1>Webness Management</h1>
 </div>
 
-<p-drawer [(visible)]="visible" position="left" header="Menú Principal">
-  <p-panelMenu [model]="items"></p-panelMenu>
-</p-drawer>
+<app-sidebar [visible]="drawerVisible" (DrawerClosed)="OnDrawerClosed()">
+</app-sidebar>
 
 <div class="content">
   <router-outlet></router-outlet>

@@ -4,16 +4,18 @@ import { DrawerModule } from 'primeng/drawer';
 import { ButtonModule } from 'primeng/button';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { MenuItem } from 'primeng/api';
+import { Sidebar } from '../../components/layout/sidebar/sidebar';
 
 @Component({
   selector: 'app-main-menu',
   standalone: true,
-  imports: [RouterOutlet, DrawerModule, ButtonModule, PanelMenuModule],
+  imports: [RouterOutlet, DrawerModule, ButtonModule, PanelMenuModule, Sidebar],
   templateUrl: './main.html',
   styleUrls: ['./main.css']
 })
 export class MainMenu {
-  visible: boolean = false;
+  drawerVisible: boolean = false;
+
   items: MenuItem[] = [];
 
   ngOnInit() {
@@ -24,7 +26,15 @@ export class MainMenu {
     ];
   }
 
-  toggleDrawer() {
-    this.visible = !this.visible;
+  OnDrawerClosed() {
+    console.log('Cerrando drawern en MainMenu');
+    this.drawerVisible = false;
+
+  }
+  
+  OnDrawerOpen() {
+    console.log('Abriendo drawern en MainMenu');
+    this.drawerVisible = true;
+
   }
 }
