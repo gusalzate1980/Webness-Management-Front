@@ -1,7 +1,4 @@
-<div class="header">
-  <p-button (click)="OnDrawerOpen()" icon="pi pi-bars" />
-  <h1>Webness Management</h1>
-</div>
+<app-header (menuClick)="OnDrawerOpen()"></app-header>
 
 <app-sidebar [visible]="drawerVisible" (DrawerClosed)="OnDrawerClosed()">
 </app-sidebar>

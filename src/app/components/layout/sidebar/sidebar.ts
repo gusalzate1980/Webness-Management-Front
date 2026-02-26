@@ -6,11 +6,12 @@ import { TreeModule } from 'primeng/tree';
 import { Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TreeNode } from 'primeng/api';
+import { RouterModule } from '@angular/router'; 
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [AvatarModule, ButtonModule, DrawerModule, TreeModule, CommonModule],
+  imports: [RouterModule,AvatarModule, ButtonModule, DrawerModule, TreeModule, CommonModule],
   templateUrl: './sidebar.html',
   styleUrls: ['./sidebar.css'],
 })
@@ -25,7 +26,8 @@ export class Sidebar
         {
             label: 'Management',
             icon: 'pi pi-id-card',
-            expanded: true
+            expanded: true,
+            data: { url: '/dashboard' }
         },
         {
             label: 'Career',
@@ -34,15 +36,18 @@ export class Sidebar
             children: [
             {
                 label: 'Give Feedback',
-                icon: 'pi pi-arrow-right'
+                icon: 'pi pi-arrow-right',
+                data: { url: '/dashboard' }
             },
             {
                 label: 'My Feedback',
-                icon: 'pi pi-arrow-left'
+                icon: 'pi pi-arrow-left',
+                data: { url: '/dashboard' }
             },
             {
                 label: 'One on One',
-                icon: 'pi pi-comments'
+                icon: 'pi pi-comments',
+                data: { url: '/dashboard' }
             }]
         }]
     },
@@ -53,15 +58,18 @@ export class Sidebar
         children: [
         {
             label: 'Open Positions',
-            icon: 'pi pi-folder-open'
+            icon: 'pi pi-folder-open',
+            data: { url: '/dashboard' }
         },
         {
             label: 'Candidates',
-            icon: 'pi pi-users'
+            icon: 'pi pi-users',
+            data: { url: '/dashboard' }
         },
         {
             label: 'Oportunities',
-            icon: 'pi pi-verified'
+            icon: 'pi pi-verified',
+            data: { url: '/dashboard' }
         }]
     },
     {
@@ -72,12 +80,14 @@ export class Sidebar
         {
             label: 'Register Assessment',
             icon: 'pi pi-pen-to-square',
-            expanded: true
+            expanded: true,
+            data: { url: '/dashboard' }
         },
         {
             label: 'My Assessments',
             icon: 'pi pi-list-check',
-            expanded: true
+            expanded: true,
+            data: { url: '/dashboard' }
         }]
     },
     {
@@ -93,17 +103,20 @@ export class Sidebar
             {
                 label: 'Purchase Orders',
                 icon: 'pi pi-file',
-                expanded: true
+                expanded: true,
+                data: { url: '/dashboard' }
             },
             {
                 label: 'Billing',
                 icon: 'pi pi-dollar',
-                expanded: true
+                expanded: true,
+                data: { url: '/dashboard' }
             },
             {
                 label: 'Payments',
                 icon: 'pi pi-money-bill',
-                expanded: true
+                expanded: true,
+                data: { url: '/dashboard' }
             }]
         },
         {
@@ -119,23 +132,27 @@ export class Sidebar
                   {
                       label: 'Request Time Off',
                       icon: 'pi pi-clock',
-                      expanded: true
+                      expanded: true,
+                      data: { url: '/dashboard' }
                   },
                   {
                       label: 'Time Off Requests',
                       icon: 'pi pi-calendar-clock',
-                      expanded: true
+                      expanded: true,
+                      data: { url: '/dashboard' }
                   }]
               },
               {
                   label: 'Payments',
                   icon: 'pi pi-building-columns',
-                  expanded: true
+                  expanded: true,
+                  data: { url: '/dashboard' }
               },
               {
                   label: 'Contracts',
                   icon: 'pi pi-envelope',
-                  expanded: true
+                  expanded: true,
+                  data: { url: '/dashboard' }
               }]
         }]
     },
@@ -148,12 +165,14 @@ export class Sidebar
             {
                 label: 'Management',
                 icon: 'pi pi-address-book',
-                expanded: true
+                expanded: true,
+                data: { url: '/dashboard' }
             },
             {
                 label: 'Users',
                 icon: 'pi pi-users',
-                expanded: true
+                expanded: true,
+                data: { url: '/dashboard' }
             }    
         ]
     }

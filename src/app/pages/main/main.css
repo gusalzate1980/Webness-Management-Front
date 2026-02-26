@@ -1,9 +1,14 @@
 .header {
   display: flex;
   align-items: center;
-  background: #333435;
-  color: white;
+  background: #FFFFFF;
+  color: #86888a;
   padding: 1rem;
+  border-radius: 12px;
+  border-color: #86888a;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #86888a;
 }
 
 .header h1 {

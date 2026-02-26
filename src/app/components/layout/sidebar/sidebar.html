@@ -12,12 +12,33 @@
                             </p-button>
                         </div>
                         <div class="flex-1 overflow-y-auto px-4 pb-4">
-                            <p-tree [value]="files" class="w-full" />
+                            <p-tree [value]="files" class="w-full">
+                                <ng-template let-node pTemplate="default">
+
+                                    <a *ngIf="node.data?.url"
+                                    [routerLink]="node.data.url"
+                                    routerLinkActive="active-link"
+                                    class="tree-link flex items-center gap-2 w-full px-2 py-2 rounded transition-colors">
+
+                                        <span>{{ node.label }}</span>
+
+                                    </a>
+
+                                    <span *ngIf="!node.data?.url"
+                                        class="flex items-center gap-2 px-2 py-2">
+
+                                        <span>{{ node.label }}</span>
+
+                                    </span>
+
+                                </ng-template>
+
+                                </p-tree>
                         </div>
                         <div class="mt-auto">
                             <hr class="mb-4 mx-4 border-t border-0 border-surface" />
                             <a pRipple class="m-4 flex items-center cursor-pointer p-4 gap-2 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple">
-                                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
+                                <p-avatar image="https://drive.google.com/file/d/1TKUxRnEcD1Vk40uIc4Op06KHw0o0QTPN/view?usp=sharing" shape="circle" />
                                 <span class="font-bold">Gustavo Alzate</span>
                             </a>
                         </div>

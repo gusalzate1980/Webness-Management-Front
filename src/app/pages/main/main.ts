@@ -5,11 +5,12 @@ import { ButtonModule } from 'primeng/button';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { MenuItem } from 'primeng/api';
 import { Sidebar } from '../../components/layout/sidebar/sidebar';
+import { Header } from '../../components/layout/header/header';
 
 @Component({
   selector: 'app-main-menu',
   standalone: true,
-  imports: [RouterOutlet, DrawerModule, ButtonModule, PanelMenuModule, Sidebar],
+  imports: [RouterOutlet, DrawerModule, ButtonModule, PanelMenuModule, Sidebar, Header],
   templateUrl: './main.html',
   styleUrls: ['./main.css']
 })

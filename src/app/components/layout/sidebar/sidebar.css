@@ -1,0 +1,19 @@
+.tree-link {
+  text-decoration: none;
+  color: var(--p-text-color);
+  font-size: 14px;
+}
+
+.tree-link:hover {
+  background-color: var(--p-surface-200);
+}
+
+.active-link {
+  background-color: var(--p-primary-100);
+  color: var(--p-primary-700);
+  font-weight: 600;
+}
+
+.p-tree .p-tree-node-content {
+  padding: 0.25rem 0;
+}
