@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import {  BreadcrumbModule } from 'primeng/breadcrumb';
 import { RouterModule } from '@angular/router';
+import { CardModule } from 'primeng/card';
+import { TabsModule } from 'primeng/tabs';
 
 @Component({
   selector: 'app-create-employee',
-  imports: [BreadcrumbModule, RouterModule],
+  imports: [BreadcrumbModule, RouterModule, CardModule, TabsModule],
   standalone:true,
   templateUrl: './create-employee.html',
   styleUrl: './create-employee.css',
