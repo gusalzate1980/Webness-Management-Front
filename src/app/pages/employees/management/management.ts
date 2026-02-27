@@ -9,6 +9,8 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MenubarModule } from 'primeng/menubar';
+import { EmployeeManagementVm } from '../../../../ViewModels/Employee/EmployeeManagementVm';
+import { DropdownVm } from '../../../../ViewModels/Common/DropdownVm';
 
 @Component({
   selector: 'app-management',
@@ -17,10 +19,12 @@ import { MenubarModule } from 'primeng/menubar';
   templateUrl: './management.html',
   styleUrl: './management.css',
 })
-export class Management implements OnInit {
+export class Management implements OnInit 
+{
+    EmployeeManagementVm: EmployeeManagementVm = new EmployeeManagementVm();
     items: MenuItem[] | undefined;
     home: MenuItem | undefined;
-    cities: City[] | undefined;
+    Areas: DropdownVm[] | undefined;
     selectedCity: City | undefined;
     employees: Employee[] = [];    
     selectedEmployee?: Employee;
@@ -39,20 +43,7 @@ export class Management implements OnInit {
           }];
         this.home = { icon: 'pi pi-home' };
 
-        this.cities = [
-            { name: 'New York', code: 'NY' },
-            { name: 'Rome', code: 'RM' },
-            { name: 'London', code: 'LDN' },
-            { name: 'Istanbul', code: 'IST' },
-            { name: 'Paris', code: 'PRS' }
-        ];
-
-        this.employees = [
-            { name: 'Gustavo', lastName: 'Alzate', area: 'Development', position: 'Software Manager', role: 'Software Manager' },
-            { name: 'Emilio', lastName: 'Zambrano', area: 'Development', position: 'Senior Java Engineer', role: 'Engineer' },
-            { name: 'Lorena', lastName: 'Quiceno', area: 'Accounting', position: 'Accounting Manager', role: 'Financial' },
-            { name: 'Cecilia', lastName: 'Jaramillo', area: 'Development', position: 'Business Analyst', role: 'Engineer' }
-            ];
+        this.EmployeeManagementVm.SearchEmployee.LoadLists();
 
             this.buildMenu();
     }
