@@ -1,48 +1,72 @@
-<div class="card flex justify-center">
-            <p-drawer [(visible)]="visible" (onHide)="closeCallback()" *ngIf="visible">
-                <ng-template #headless>
-                    <div class="flex flex-col h-full" style="overflow-y:auto">
-                        <div class="flex justify-end w-full px-6 pt-4 shrink-0">
-                            <p-button   type="button"
-                                        (click)="closeCallback()"
-                                        icon="pi pi-times"
-                                        size="small"
-                                        rounded
-                                        outlined>
-                            </p-button>
-                        </div>
-                        <div class="flex-1 overflow-y-auto px-4 pb-4">
-                            <p-tree [value]="files" class="w-full">
-                                <ng-template let-node pTemplate="default">
+<div class="card">
 
-                                    <a *ngIf="node.data?.url"
-                                    [routerLink]="node.data.url"
-                                    routerLinkActive="active-link"
-                                    class="tree-link flex items-center gap-2 w-full px-2 py-2 rounded transition-colors">
+  <p-drawer
+    *ngIf="visible"
+    [(visible)]="visible"
+    (onHide)="closeCallback()"
+    [style]="{ width: '28rem', height: '100vh' }">
 
-                                        <span>{{ node.label }}</span>
+    <ng-template #headless>
 
-                                    </a>
+      <div class="drawer-container">
 
-                                    <span *ngIf="!node.data?.url"
-                                        class="flex items-center gap-2 px-2 py-2">
+        <!-- HEADER -->
+        <div class="drawer-header">
+          <p-button
+            type="button"
+            icon="pi pi-times"
+            size="small"
+            rounded
+            outlined
+            (click)="closeCallback()">
+          </p-button>
+        </div>
 
-                                        <span>{{ node.label }}</span>
+        <!-- SCROLLABLE CONTENT -->
+        <div class="drawer-content">
 
-                                    </span>
+          <p-tree [value]="files" class="w-full">
 
-                                </ng-template>
+            <ng-template let-node pTemplate="default">
 
-                                </p-tree>
-                        </div>
-                        <div class="mt-auto">
-                            <hr class="mb-4 mx-4 border-t border-0 border-surface" />
-                            <a pRipple class="m-4 flex items-center cursor-pointer p-4 gap-2 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple">
-                                <p-avatar image="https://drive.google.com/file/d/1TKUxRnEcD1Vk40uIc4Op06KHw0o0QTPN/view?usp=sharing" shape="circle" />
-                                <span class="font-bold">Gustavo Alzate</span>
-                            </a>
-                        </div>
-                    </div>
-                </ng-template>
-            </p-drawer>
-       </div>
+              <a *ngIf="node.data?.url"
+                 [routerLink]="node.data.url"
+                 routerLinkActive="active-link"
+                 class="tree-link">
+                {{ node.label }}
+              </a>
+
+              <span *ngIf="!node.data?.url"
+                    class="tree-label">
+                {{ node.label }}
+              </span>
+
+            </ng-template>
+
+          </p-tree>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="drawer-footer">
+          <a pRipple class="user-box">
+
+            <p-avatar
+              image="https://drive.google.com/uc?export=view&id=1TKUxRnEcD1Vk40uIc4Op06KHw0o0QTPN"
+              shape="circle">
+            </p-avatar>
+
+            <span class="user-name">
+              Gustavo Alzate
+            </span>
+
+          </a>
+        </div>
+
+      </div>
+
+    </ng-template>
+
+  </p-drawer>
+
+</div>

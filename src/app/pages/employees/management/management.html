@@ -1,3 +1,167 @@
-<div class="card flex justify-center">
-    <p-breadcrumb [model]="items" [home]="home" />
+<div class="card">
+  <div class="container-fluid mt-2">
+
+    <!-- Breadcrumb -->
+    <div class="row g-2">
+      <div class="col-12">
+        <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+      </div>
+    </div>
+
+    <!-- Campos -->
+     <p-card class="col-12">
+        <div class="row g-2">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-2">
+                <div class="row g-2">
+                    <div class="col-12">
+                        <span>Name</span>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-12">
+                        <input type="text" pInputText />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-2">
+                <div class="row g-2">
+                    <div class="col-12">
+                        <span>Last Name</span>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-12">
+                        <input type="text" pInputText />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-2">
+                <div class="row g-2">
+                    <div class="col-12">
+                        <span>Document Number</span>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-12">
+                        <input type="text" pInputText />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-2">
+                <div class="row g-2">
+                    <div class="col-12">
+                        <span>Area</span>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-12">
+                        <p-select [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" placeholder="Select a City" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-2">
+                <div class="row g-2">
+                    <div class="col-12">
+                        <span>Position</span>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-12">
+                        <p-select [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" placeholder="Select a City" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4 col-xl-2">
+                <div class="row g-2">
+                    <div class="col-12">
+                        <span>Rol</span>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-12">
+                        <p-select [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" placeholder="Select a City" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-2 mt-2">
+            <div class="col-12 justify-content-end d-flex">
+                <p-button label="Search" severity="success" />
+            </div>
+        </div>
+     </p-card>
+     <br/>
+     
+     <p-card>
+        <p-menubar [model]="menuItems" styleClass="p-menubar-sm mb-3"></p-menubar>
+        <p-table
+            [value]="employees"
+            dataKey="name"
+            [rowHover]="true"
+            responsiveLayout="scroll"
+            class="p-datatable-sm">
+
+            <!-- HEADER -->
+            <ng-template pTemplate="header">
+                <tr>
+                <th style="width:4rem">Select</th>
+
+                <th pSortableColumn="name">
+                    Name
+                    <p-sortIcon field="name"></p-sortIcon>
+                </th>
+
+                <th pSortableColumn="lastName">
+                    Last Name
+                    <p-sortIcon field="lastName"></p-sortIcon>
+                </th>
+
+                <th pSortableColumn="area">
+                    Area
+                    <p-sortIcon field="area"></p-sortIcon>
+                </th>
+
+                <th pSortableColumn="position">
+                    Position
+                    <p-sortIcon field="position"></p-sortIcon>
+                </th>
+
+                <th pSortableColumn="role">
+                    Role
+                    <p-sortIcon field="role"></p-sortIcon>
+                </th>
+                </tr>
+            </ng-template>
+
+            <!-- BODY -->
+            <ng-template pTemplate="body" let-employee>
+                <tr [class.p-highlight]="selectedEmployee === employee">
+
+                <td>
+                    <p-radioButton
+                        name="employee"
+                        [value]="employee"
+                        [(ngModel)]="selectedEmployee"
+                        (click)="toggleSelection(employee)">
+                    </p-radioButton>
+                </td>
+
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.lastName }}</td>
+                <td>{{ employee.area }}</td>
+                <td>{{ employee.position }}</td>
+                <td>{{ employee.role }}</td>
+
+                </tr>
+            </ng-template>
+
+            </p-table>
+     </p-card>
+  </div>
 </div>

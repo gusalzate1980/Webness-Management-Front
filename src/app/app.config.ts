@@ -3,11 +3,11 @@ import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { providePrimeNG } from 'primeng/config';
 import { definePreset } from '@primeng/themes';
-import Aura from '@primeng/themes/aura';
+import Material from '@primeng/themes/material';
 
 import { routes } from './app.routes';
 
-const MyTheme = definePreset(Aura, {
+const MyTheme = definePreset(Material, {
   semantic: {
     primary: {
       50:  '#235c94',
