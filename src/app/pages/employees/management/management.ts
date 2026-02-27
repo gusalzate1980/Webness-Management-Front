@@ -10,12 +10,13 @@ import { TableModule } from 'primeng/table';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MenubarModule } from 'primeng/menubar';
 import { EmployeeManagementVm } from '../../../../ViewModels/Employee/EmployeeManagementVm';
-import { DropdownVm } from '../../../../ViewModels/Common/DropdownVm';
+import { GridSearchEmployeeVm } from '../../../../ViewModels/Employee/GridSearchEmployeeVm';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-management',
   standalone: true,
-  imports: [BreadcrumbModule, InputTextModule, SelectModule, FormsModule, CardModule, ButtonModule, TableModule, RadioButtonModule, MenubarModule],
+  imports: [BreadcrumbModule, InputTextModule, SelectModule, FormsModule, CardModule, ButtonModule, TableModule, RadioButtonModule, MenubarModule,RouterOutlet],
   templateUrl: './management.html',
   styleUrl: './management.css',
 })
@@ -24,10 +25,6 @@ export class Management implements OnInit
     EmployeeManagementVm: EmployeeManagementVm = new EmployeeManagementVm();
     items: MenuItem[] | undefined;
     home: MenuItem | undefined;
-    Areas: DropdownVm[] | undefined;
-    selectedCity: City | undefined;
-    employees: Employee[] = [];    
-    selectedEmployee?: Employee;
     menuItems: MenuItem[] = [];
 
     ngOnInit() {
@@ -48,42 +45,43 @@ export class Management implements OnInit
             this.buildMenu();
     }
 
-    toggleSelection(employee: Employee) {
-        if (this.selectedEmployee === employee) {
-            this.selectedEmployee = undefined as any;
-        } else {
-            this.selectedEmployee = employee;
+    toggleSelection(employee: GridSearchEmployeeVm) {
+        if (this.EmployeeManagementVm.SelectedEmployee === employee) 
+        {
+            this.EmployeeManagementVm.SelectedEmployee = undefined as any;
+        } 
+        else 
+        {
+            this.EmployeeManagementVm.SelectedEmployee = employee;
         }
 
         this.buildMenu();
     }
-
-    
 
     create() {
         console.log('Create clicked');
         }
 
         edit() {
-        console.log('Edit', this.selectedEmployee);
+        console.log('Edit', this.EmployeeManagementVm.SelectedEmployee);
         }
 
         delete() {
-        console.log('Delete', this.selectedEmployee);
+        console.log('Delete', this.EmployeeManagementVm.SelectedEmployee);
         }
 
         skills() {
-        console.log('Skills', this.selectedEmployee);
+        console.log('Skills', this.EmployeeManagementVm.SelectedEmployee);
         }
 
         private buildMenu() {
-        const hasSelection = this.selectedEmployee != null;
+        const hasSelection = this.EmployeeManagementVm.SelectedEmployee != null;
 
         this.menuItems = [
             {
             label: 'Create',
             icon: 'pi pi-plus',
-            command: () => this.create()
+            routerLink: ['/main/employees/management/create-employee']
             },
             {
             label: 'Edit',
@@ -106,20 +104,3 @@ export class Management implements OnInit
         ];
         }
 }
-
-interface City {
-    name: string;
-    code: string;
-}
-
-interface Employee {
-  name: string;
-  lastName: string;
-  area: string;
-  position: string;
-  role: string;
-}
-function menuItems() {
-    throw new Error('Function not implemented.');
-}
-

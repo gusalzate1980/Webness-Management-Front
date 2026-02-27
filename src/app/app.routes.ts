@@ -5,6 +5,7 @@ import { Management } from './pages/employees/management/management';
 import { GiveFeedback } from './pages/employees/Career/give-feedback/give-feedback';
 import { MyFeedBack } from './pages/employees/Career/my-feed-back/my-feed-back';
 import { OneOnOne } from './pages/employees/Career/one-on-one/one-on-one';
+import { CreateEmployee } from './pages/employees/management/create-employee/create-employee';
 
 
 
@@ -20,6 +21,10 @@ export const routes: Routes = [
         {
           path: 'management',
           component: Management
+        },
+        {
+            path: 'management/create-employee',
+            component: CreateEmployee
         },
         {
             path: 'career',
