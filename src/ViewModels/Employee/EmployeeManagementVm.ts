@@ -1,9 +1,9 @@
 import { GridSearchEmployeeVm } from "./GridSearchEmployeeVm";
 import { SearchEmployeeVm } from "./SearchEmployeeVm";
 
-export class EmployeeManagementVm
+export interface EmployeeManagementVm
 {
-    SearchEmployee: SearchEmployeeVm = new SearchEmployeeVm();
-    GridSearchEmployee: GridSearchEmployeeVm[] = [];
-    SelectedEmployee: GridSearchEmployeeVm | undefined;
+    SearchEmployee: SearchEmployeeVm;
+    GridSearchEmployee: GridSearchEmployeeVm[];
+    SelectedEmployee: GridSearchEmployeeVm;
 }

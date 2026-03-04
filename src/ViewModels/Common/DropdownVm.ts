@@ -1,6 +1,6 @@
-export class DropdownVm 
+export interface DropdownVm 
 {
-    Label: string | undefined;
-    Value: number | undefined;
-    Parent?: number | undefined;
+    Label: string;
+    Value: number;
+    Parent?: number;
 }

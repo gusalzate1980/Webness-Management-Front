@@ -19,7 +19,7 @@
                 </div>
                 <div class="row g-2">
                     <div class="col-12">
-                        <input type="text" pInputText [(ngModel)]="EmployeeManagementVm.SearchEmployee.Name" />
+                        <input type="text" pInputText [(ngModel)]="EmployeeManagementVm!.SearchEmployee!.Name" />
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="row g-2">
                     <div class="col-12">
-                        <input type="text" pInputText pInputText [(ngModel)]="EmployeeManagementVm.SearchEmployee.LastName"/>
+                        <input type="text" pInputText pInputText [(ngModel)]="EmployeeManagementVm!.SearchEmployee!.LastName"/>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="row g-2">
                     <div class="col-12">
-                        <input type="text" pInputText pInputText [(ngModel)]="EmployeeManagementVm.SearchEmployee.DocumentNumber"/>
+                        <input type="text" pInputText pInputText [(ngModel)]="EmployeeManagementVm!.SearchEmployee!.DocumentNumber"/>
                     </div>
                 </div>
             </div>
@@ -58,9 +58,9 @@
                 </div>
                 <div class="row g-2">
                     <div class="col-12">
-                        <p-select   [options]="EmployeeManagementVm.SearchEmployee.Areas" 
-                                    [(ngModel)]="EmployeeManagementVm.SearchEmployee.SelectedArea" 
-                                    (ngModelChange)="EmployeeManagementVm.SearchEmployee.ChangeArea()"
+                        <p-select   [options]="EmployeeManagementVm!.SearchEmployee!.Areas" 
+                                    [(ngModel)]="EmployeeManagementVm!.SearchEmployee!.SelectedArea" 
+                                    (ngModelChange)="ChangeArea()"
                                     optionLabel="Label" placeholder="Select an Area" />
                     </div>
                 </div>
@@ -74,8 +74,8 @@
                 </div>
                 <div class="row g-2">
                     <div class="col-12">
-                        <p-select   [options]="EmployeeManagementVm.SearchEmployee.Positions" 
-                                    [(ngModel)]="EmployeeManagementVm.SearchEmployee.SelectedArea" 
+                        <p-select   [options]="EmployeeManagementVm!.SearchEmployee!.Positions" 
+                                    [(ngModel)]="EmployeeManagementVm!.SearchEmployee!.SelectedArea" 
                                     optionLabel="Label" placeholder="Select an Position" />
                     </div>
                 </div>
@@ -89,8 +89,8 @@
                 </div>
                 <div class="row g-2">
                     <div class="col-12">
-                        <p-select   [options]="EmployeeManagementVm.SearchEmployee.Roles" 
-                                    [(ngModel)]="EmployeeManagementVm.SearchEmployee.SelectedRol" 
+                        <p-select   [options]="EmployeeManagementVm!.SearchEmployee!.Roles" 
+                                    [(ngModel)]="EmployeeManagementVm!.SearchEmployee!.SelectedRol" 
                                     optionLabel="Label" placeholder="Select a Rol" />
                     </div>
                 </div>
@@ -100,7 +100,7 @@
         <div class="row g-2 mt-2">
             <div class="col-12 justify-content-end d-flex">
                 <p-button   label="Search" severity="success" 
-                            (click)="EmployeeManagementVm.GridSearchEmployee = EmployeeManagementVm.SearchEmployee.ClickSearch()" />
+                            (click)="Search()" />
             </div>
         </div>
      </p-card>
@@ -109,7 +109,7 @@
      <p-card>
         <p-menubar [model]="menuItems" styleClass="p-menubar-sm mb-3"></p-menubar>
         <p-table
-            [value]="EmployeeManagementVm.GridSearchEmployee"
+            [value]="EmployeeManagementVm!.GridSearchEmployee"
             dataKey="Name"
             [rowHover]="true"
             responsiveLayout="scroll"
@@ -155,7 +155,7 @@
                     <p-radioButton
                         name="Employee"
                         [value]="Employee"
-                        [(ngModel)]="EmployeeManagementVm.SelectedEmployee"
+                        [(ngModel)]="EmployeeManagementVm!.SelectedEmployee"
                         (click)="toggleSelection(Employee)">
                     </p-radioButton>
                 </td>
@@ -173,5 +173,23 @@
      </p-card>
   </div>
 </div>
+
+
+<p-blockUI [blocked]="EmployeeManagementVm.SearchEmployee.BlockedScreen">
+
+    @if (EmployeeManagementVm.SearchEmployee.BlockedScreen) {
+        <div class="spinner-container">
+
+            <p-progress-spinner
+                strokeWidth="8"
+                fill="transparent"
+                animationDuration=".5s"
+                [style]="{ width: '80px', height: '80px' }">
+            </p-progress-spinner>
+
+        </div>
+    }
+
+</p-blockUI>
 
 <router-outlet></router-outlet>
