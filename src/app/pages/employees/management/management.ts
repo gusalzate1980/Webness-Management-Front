@@ -162,7 +162,31 @@ export class Management implements OnInit
 
     ChangeArea()
     {
-        this.EmployeeManagementVm.SearchEmployee.Positions = this.EmployeeManagementVm.SearchEmployee.AllPositions?.filter(x=>x.Parent == this.EmployeeManagementVm.SearchEmployee.SelectedArea.Value);    
+        this.EmployeeManagementVm.SearchEmployee.Positions = this.EmployeeManagementVm.SearchEmployee.AllPositions?.filter(x=>x.Parent == this.EmployeeManagementVm.SearchEmployee.SelectedArea.Value);       
+    }
+
+    CleanForm()
+    {
+        this.EmployeeManagementVm.SearchEmployee.Name = "";
+        this.EmployeeManagementVm.SearchEmployee.LastName = "";
+        this.EmployeeManagementVm.SearchEmployee.DocumentNumber = "";
+        this.EmployeeManagementVm.SearchEmployee.SelectedArea =  
+        {
+            Label: "",
+            Value:0
+        };
+        this.EmployeeManagementVm.SearchEmployee.SelectedPosition =  
+        {
+            Label: "",
+            Value:0
+        };
+        this.EmployeeManagementVm.SearchEmployee.SelectedRol =  
+        {
+            Label: "",
+            Value:0
+        };
+
+        this.EmployeeManagementVm.SearchEmployee.Positions = [];
     }
 
     ngOnInit() 

@@ -7,7 +7,6 @@ import { ListEmployeeResponseDto} from '../Dto/ListEmployeeresponseDto'
 import { PaginatorResponseDto} from '../Dto/PaginatorResponseDto'
 import { ApiRequestDto } from '../Dto/ApiRequestDto';
 import { ListEmployeeRequestDto } from '../Dto/ListEmployeeRequestDto';
-import { PaginatorRequestDto } from '../Dto/PaginatorRequestDto';
 
 @Injectable({
   providedIn: 'root'

@@ -75,7 +75,7 @@
                 <div class="row g-2">
                     <div class="col-12">
                         <p-select   [options]="EmployeeManagementVm!.SearchEmployee!.Positions" 
-                                    [(ngModel)]="EmployeeManagementVm!.SearchEmployee!.SelectedArea" 
+                                    [(ngModel)]="EmployeeManagementVm!.SearchEmployee!.SelectedPosition" 
                                     optionLabel="Label" placeholder="Select an Position" />
                     </div>
                 </div>
@@ -98,9 +98,19 @@
         </div>
 
         <div class="row g-2 mt-2">
-            <div class="col-12 justify-content-end d-flex">
-                <p-button   label="Search" severity="success" 
-                            (click)="Search()" />
+            <div class="col-12 justify-content-end d-flex" style="gap:20px">
+                <p-button
+                    label="Clean Form"
+                    severity="warn"
+                    icon="pi pi-eraser"
+                    (click)="CleanForm()" />
+
+                <p-button
+                    label="Search"
+                    severity="success"
+                    icon="pi pi-search"
+                    (click)="Search()" />
+
             </div>
         </div>
      </p-card>
