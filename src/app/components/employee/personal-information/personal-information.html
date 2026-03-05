@@ -1,0 +1,213 @@
+<div class="card">
+  <div class="container-fluid mt-2">
+    <div class="row g-2">
+        <div class="col-12">
+            <div class="avatar-container">
+                <img
+                    [(src)]="PersonalInformation.ImagePreview"
+                    class="avatar-image"
+                    alt="avatar"/>
+
+                <button
+                    type="button"
+                    class="edit-button"
+                    (click)="fileInput.click()">
+
+                    <i class="pi pi-pencil"></i>
+
+                </button>
+
+                <input
+                    #fileInput
+                    type="file"
+                    accept=".png,.jpg,.jpeg"
+                    hidden
+                    (change)="OnFileSelected($event)" />
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-2">
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Name</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <input type="text" pInputText  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Last Name</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <input type="text" pInputText  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Document Type</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <p-select   [options]="PersonalInformation.DocumentTypes" 
+                                [(ngModel)]="PersonalInformation.SelectedDocumentType" 
+                                optionLabel="Label" placeholder="Select a Document Type" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Document Value</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <input type="text" pInputText  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Personal Email</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <input type="text" pInputText  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Corporate Email</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <input type="text" pInputText  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+           <div class="row g-2">
+                <div class="col-12">
+                    <span>Personal Phone</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <input type="text" pInputText  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Corporate Phone</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <input type="text" pInputText  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Contact Address</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <input type="text" pInputText  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Date of Birth</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-12 col-md-10 col-sm-12">
+                    <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Contact Person Name</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <input type="text" pInputText  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Contact Person Phone</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <input type="text" pInputText  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span>Rol</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <p-select   [options]="PersonalInformation.Roles" 
+                                [(ngModel)]="PersonalInformation.SelectedRol" 
+                                optionLabel="Label" placeholder="Select a Document Type" />
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-12">
+            <p-button
+                label="Save"
+                severity="help"
+                icon="pi pi-save" />
+        </div>
+    </div>
+</div>
