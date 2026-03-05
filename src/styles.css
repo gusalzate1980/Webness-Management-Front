@@ -9,3 +9,8 @@ html, body {
 .p-select {
   width: 100% !important;
 }
+
+span.form-label
+{
+  font-weight: bold;
+}

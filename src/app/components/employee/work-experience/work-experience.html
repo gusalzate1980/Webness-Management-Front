@@ -1,1 +1,135 @@
-<p>work-experience works!</p>
+<div class="card">
+  <div class="container-fluid mt-2">
+    <div class="row g-2">
+        <div class="col-12">
+            <p-accordion value="0">
+                <p-accordion-panel value="NE">
+                    <p-accordion-header style="background-color:#a9a9ab">Add New Work Experience</p-accordion-header>
+                        <p-accordion-content>
+                            <div class="row g-1">
+                                <div class="col-12">
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <span class="form-label">Company</span>
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <input type="text" pInputText  />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <span class="form-label">Start Date</span>
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                                            <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd" />    
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <span  class="form-label">End  Date</span>
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                                            <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd" />    
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <span  class="form-label">Brief Summary</span>
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <textarea rows="8" style="width: 100%" pTextarea [autoResize]="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <span  class="form-label">Skills</span>
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <input type="text" pInputText  />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row g-2">
+                                        <div class="col-12 tags-container">
+                                            <p-tag severity="contrast" value="English B2"></p-tag>
+                                            <p-tag severity="danger" value=".Net Core"></p-tag>
+                                            <p-tag severity="success" value="Sql Server"></p-tag>
+                                            <p-tag severity="info" value="Leadership"></p-tag>
+                                            <p-tag severity="warn" value="Angular"></p-tag>
+                                            <p-tag severity="danger" value="Entity Framework"></p-tag>
+                                            <p-tag severity="contrast" value="Azure Devops"></p-tag>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <div class="col-12">
+                                    <p-button
+                                        label="Add"
+                                        severity="help"
+                                        icon="pi pi-save" />
+                                </div>        
+                            </div>
+                        </p-accordion-content>
+                </p-accordion-panel>
+
+                <p-accordion-panel value="0">
+                    <p-accordion-header  style="background-color:#cdcdce">
+                        Globant
+                    </p-accordion-header>
+                    <p-accordion-content>
+                        <p class="m-0">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum.
+                        </p>
+                    </p-accordion-content>
+                </p-accordion-panel>
+                <p-accordion-panel value="0">
+                    <p-accordion-header style="background-color:#cdcdce">Aloti Software</p-accordion-header>
+                    <p-accordion-content>
+                        <p class="m-0">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum.
+                        </p>
+                    </p-accordion-content>
+                </p-accordion-panel>
+                <p-accordion-panel value="0">
+                    <p-accordion-header style="background-color:#cdcdce">Talento Solido</p-accordion-header>
+                    <p-accordion-content>
+                        <p class="m-0">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                            laborum.
+                        </p>
+                    </p-accordion-content>
+                </p-accordion-panel>
+            </p-accordion>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,154 @@
-<p>corporate-information works!</p>
+<div class="card">
+  <div class="container-fluid mt-2">
+    
+    <div class="row g-2">
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span class="form-label">Area</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <p-select   [options]="CorporateInformation.Areas" 
+                                [(ngModel)]="CorporateInformation.SelectedArea" 
+                                optionLabel="Label" placeholder="Select an Area" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span class="form-label">Position</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <p-select   [options]="CorporateInformation.Positions" 
+                                [(ngModel)]="CorporateInformation.SelectedPosition" 
+                                optionLabel="Label" placeholder="Select a Position" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span class="form-label">Seniority</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <p-select   [options]="CorporateInformation.Seniorities" 
+                                [(ngModel)]="CorporateInformation.SelectedSeniority" 
+                                optionLabel="Label" placeholder="Select a Seniority" /> 
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span class="form-label">Salary</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <input type="text" pInputText  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span class="form-label">Start Date</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span class="form-label">Is Boss</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <p-toggleswitch  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+           <div class="row g-2">
+                <div class="col-12">
+                    <span class="form-label">Has End Date</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <p-toggleswitch  />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span class="form-label">End Date</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span class="form-label">Contract</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12">
+                    <p-fileUpload
+                        name="files[]"
+                        url="/api/upload"
+                        [multiple]="true"
+                        [showUploadButton]="false"
+                        [showCancelButton]="false"
+                        chooseLabel="Choose files to Upload"
+                        styleClass="custom-upload"
+                    >
+
+                        <ng-template pTemplate="content">
+                            <div class="upload-container">
+                                <i class="pi pi-cloud-upload upload-icon"></i>
+                                <div class="drag-text">
+                                    or drag and drop them here
+                                </div>
+                            </div>
+                        </ng-template>
+
+                    </p-fileUpload>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-12">
+            <p-button
+                label="Save"
+                severity="help"
+                icon="pi pi-save" />
+        </div>
+    </div>
+</div>
