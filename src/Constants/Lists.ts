@@ -21,7 +21,9 @@ export class Lists
         { Label: 'Business Analyst', Value: 6, Parent:4 },
         { Label: 'Accounting', Value: 8, Parent:1 },
         { Label: 'Billing', Value: 9, Parent:1 },
-        { Label: 'Payroll', Value: 10, Parent:1 }
+        { Label: 'Payroll', Value: 10, Parent:1 },
+        { Label: 'Software Manager', Value: 11, Parent:1 },
+        { Label: 'Cfo', Value: 12, Parent:1 }
     ];
 
     static readonly Seniorities: DropdownVm[]= 
