@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="avatar-container">
                 <img
-                    [(src)]="PersonalInformation.ImagePreview"
+                    [(src)]="ViewModel.ImagePreview"
                     class="avatar-image"
                     alt="avatar"/>
 
@@ -26,6 +26,12 @@
 
             </div>
         </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-12">
+            @if(ViewModel.ShowErrorProfilePicture)
+            {
+                <p-message severity="warn" icon="pi pi-exclamation-circle">Only PNG, JPG or JPEG files are allowed</p-message>
+            }
+        </div>
     </div>
 
     <div class="row g-2">
@@ -37,7 +43,20 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <input type="text" pInputText  />
+                    <input type="text" pInputText  [(ngModel)]="ViewModel.Name"/>
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(ViewModel.ShowErrorName)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                            @for(error of ViewModel.ErrorsName; track $index)
+                            {
+                                <li>{{error}}</li>
+                            }
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -50,7 +69,20 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <input type="text" pInputText  />
+                    <input type="text" pInputText  [(ngModel)]="ViewModel.LastName"/>
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(ViewModel.ShowErrorLastName)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                            @for(error of ViewModel.ErrorsLastName; track $index)
+                            {
+                                <li>{{error}}</li>
+                            }
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -63,9 +95,19 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <p-select   [options]="PersonalInformation.DocumentTypes" 
-                                [(ngModel)]="PersonalInformation.SelectedDocumentType" 
+                    <p-select   [options]="ViewModel.DocumentTypes" 
+                                [(ngModel)]="ViewModel.SelectedDocumentType" 
                                 optionLabel="Label" placeholder="Select a Document Type" />
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(ViewModel.ShowErrorDocumentType)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                                <li>Select an option</li>
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -78,7 +120,20 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <input type="text" pInputText  />
+                    <input type="text" pInputText [(ngModel)]="ViewModel.DocumentValue" />
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(ViewModel.ShowErrorDocumentValue)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                            @for(error of ViewModel.ErrorsDocumentValue; track $index)
+                            {
+                                <li>{{error}}</li>
+                            }
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -91,7 +146,20 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <input type="text" pInputText  />
+                    <input type="text" pInputText [(ngModel)]="ViewModel.PersonalEmail" />
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(ViewModel.ShowErrorPersonalEmail)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                            @for(error of ViewModel.ErrorsPersonalEmail; track $index)
+                            {
+                                <li>{{error}}</li>
+                            }
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -104,7 +172,20 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <input type="text" pInputText  />
+                    <input type="text" pInputText  [(ngModel)]="ViewModel.CorporateEmail" />
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(ViewModel.ShowErrorCorporateEmail)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                            @for(error of ViewModel.ErrorsCorporateEmail; track $index)
+                            {
+                                <li>{{error}}</li>
+                            }
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -117,7 +198,20 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <input type="text" pInputText  />
+                    <input type="text" pInputText  [(ngModel)]="ViewModel.PersonalPhone" />
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(ViewModel.ShowErrorPersonalPhone)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                            @for(error of ViewModel.ErrorsPersonalPhone; track $index)
+                            {
+                                <li>{{error}}</li>
+                            }
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -130,7 +224,20 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <input type="text" pInputText  />
+                    <input type="text" pInputText  [(ngModel)]="ViewModel.CorporatePhone" />
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(ViewModel.ShowErrorCorporatePhone)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                            @for(error of ViewModel.ErrorsCorporatePhone; track $index)
+                            {
+                                <li>{{error}}</li>
+                            }
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -143,8 +250,21 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <input type="text" pInputText  />
+                    <input type="text" pInputText    [(ngModel)]="ViewModel.ContactAddress" />
                 </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                @if(ViewModel.ShowErrorContactAddress)
+                {
+                    <p-message severity="warn">
+                        <ul>
+                        @for(error of ViewModel.ErrorsContactAddress; track $index)
+                        {
+                            <li>{{error}}</li>
+                        }
+                        </ul>
+                    </p-message>
+                }
+            </div>
             </div>
         </div>
 
@@ -156,8 +276,21 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-12 col-md-10 col-sm-12">
-                    <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd" />
+                    <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd"   [(ngModel)]="ViewModel.DateOfBirth" />
                 </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                @if(ViewModel.ShowErrorDateOfBirth)
+                {
+                    <p-message severity="warn">
+                        <ul>
+                        @for(error of ViewModel.ErrorsDateOfBirth; track $index)
+                        {
+                            <li>{{error}}</li>
+                        }
+                        </ul>
+                    </p-message>
+                }
+            </div>
             </div>
         </div>
 
@@ -169,8 +302,21 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <input type="text" pInputText  />
+                    <input type="text" pInputText [(ngModel)]="ViewModel.ContactPersonName" />
                 </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                @if(ViewModel.ShowErrorContactPersonName)
+                {
+                    <p-message severity="warn">
+                        <ul>
+                        @for(error of ViewModel.ErrorsContactPersonName; track $index)
+                        {
+                            <li>{{error}}</li>
+                        }
+                        </ul>
+                    </p-message>
+                }
+            </div>
             </div>
         </div>
 
@@ -182,8 +328,21 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <input type="text" pInputText  />
+                    <input type="text" pInputText  [(ngModel)]="ViewModel.ContactPersonPhone" />
                 </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                @if(ViewModel.ShowErrorContactPersonPhone)
+                {
+                    <p-message severity="warn">
+                        <ul>
+                        @for(error of ViewModel.ErrorsContactPersonPhone; track $index)
+                        {
+                            <li>{{error}}</li>
+                        }
+                        </ul>
+                    </p-message>
+                }
+            </div>
             </div>
         </div>
 
@@ -195,9 +354,19 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <p-select   [options]="PersonalInformation.Roles" 
-                                [(ngModel)]="PersonalInformation.SelectedRol" 
+                    <p-select   [options]="ViewModel.Roles" 
+                                [(ngModel)]="ViewModel.SelectedRol" 
                                 optionLabel="Label" placeholder="Select a Document Type" />
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(ViewModel.ShowErrorRol)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                                <li>Select an option</li>
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -207,7 +376,8 @@
             <p-button
                 label="Save"
                 severity="help"
-                icon="pi pi-save" />
+                icon="pi pi-save"
+                (onClick)="SaveClicked();" />
         </div>
     </div>
 </div>

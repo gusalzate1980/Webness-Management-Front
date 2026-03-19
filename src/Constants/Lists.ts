@@ -50,5 +50,12 @@ export class Lists
             { Label: 'Human Resources', Value: 6 },
             { Label: 'Key Account Manager', Value: 8 },
             { Label: 'Software Manager', Value: 9 }
-        ];
+    ];
+
+    static readonly DocumentTypes: DropdownVm[]=
+    [
+        { Label: 'Cédula de Ciudadania', Value: 1 },
+        { Label: 'Cédula de Extranjeria', Value: 2 },
+        { Label: 'Pasaporte', Value: 3 }
+    ];
 }

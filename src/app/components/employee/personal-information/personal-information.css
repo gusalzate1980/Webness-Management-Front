@@ -32,3 +32,10 @@
 .edit-button i {
     font-size: 14px;
 }
+
+ul
+{
+    margin: 0;
+    padding-left: 20px;
+    font-weight: 300;
+}
