@@ -7,6 +7,7 @@ import { ListEmployeeResponseDto} from '../Dto/ListEmployeeresponseDto'
 import { PaginatorResponseDto} from '../Dto/PaginatorResponseDto'
 import { ApiRequestDto } from '../Dto/ApiRequestDto';
 import { ListEmployeeRequestDto } from '../Dto/ListEmployeeRequestDto';
+import { ApiResponseDto } from '../Dto/ApiResponseDto';
 import { CreateEmployeeRequest } from '../Dto/CreateEmployeeRequest';
 
 @Injectable({
@@ -26,7 +27,7 @@ export class EmployeeService
         return this.http.post<PaginatorResponseDto<ListEmployeeResponseDto>>(url, request);
     }
     
-    CreateEmployee(request: CreateEmployeeRequest) 
+    CreateEmployee(request: CreateEmployeeRequest) : Observable<ApiResponseDto<any>>
     {
       const formData = new FormData();
 
@@ -50,6 +51,6 @@ export class EmployeeService
       }
 
       const url = `${this.ApiUrl}Employee/AddEmployee`;
-      return this.http.post(url, formData);
+      return this.http.post<ApiResponseDto<any>>(url, formData);
   }
 }

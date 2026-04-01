@@ -16,22 +16,22 @@
                               <i class="pi pi-address-book mr-2"></i>
                               Personal Information
                             </p-tab>
-                            <p-tab value="CI">
+                            <p-tab value="CI" [disabled]="ViewModel.DisabledCi">
                               <i class="pi pi-file mr-2"></i>
                               Corporate Information
                             </p-tab>
-                            <p-tab value="WE">
+                            <p-tab value="WE" [disabled]="ViewModel.DisabledWe">
                               <i class="pi pi-briefcase mr-2"></i>
                               Work Experience
                             </p-tab>
-                            <p-tab value="ED">
+                            <p-tab value="ED" [disabled]="ViewModel.DisabledEd">
                               <i class="pi pi-graduation-cap mr-2"></i>  
                               Education
                             </p-tab>
                         </p-tablist>
                         <p-tabpanels>
                           <p-tabpanel value="PI">
-                              <app-personal-information></app-personal-information>
+                              <app-personal-information (OnEmployeeCreated)="ActivateTabs();"></app-personal-information>
                           </p-tabpanel>
                           <p-tabpanel value="CI">
                               <app-corporate-information></app-corporate-information>

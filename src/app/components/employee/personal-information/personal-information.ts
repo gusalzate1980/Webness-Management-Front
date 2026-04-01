@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from 'primeng/inputtext';
@@ -9,24 +9,28 @@ import { DatePickerModule } from "primeng/datepicker";
 import { MessageModule } from "primeng/message";
 import { Lists } from '../../../../Constants/Lists';
 import { Validation } from '../../../../common/Validation';
-import { CreateEmployee } from '../../../pages/employees/management/create-employee/create-employee';
 import { CreateEmployeeRequest } from '../../../../Dto/CreateEmployeeRequest';
 import { EmployeeService } from '../../../../services/employee.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-personal-information',
   standalone:true,
-  imports: [ButtonModule, InputTextModule, SelectModule, FormsModule, DatePickerModule,MessageModule],
+  imports: [ButtonModule, InputTextModule, SelectModule, FormsModule, DatePickerModule,MessageModule, ToastModule],
+  providers:[MessageService],
   templateUrl: './personal-information.html',
   styleUrl: './personal-information.css',
 })
 
 export class PersonalInformation 
 {
+    @Output() OnEmployeeCreated = new EventEmitter<void>();
     ViewModel:PersonalInormationVm;
 
     constructor(private cd: ChangeDetectorRef,
-                private employeeService: EmployeeService) 
+                private employeeService: EmployeeService,
+                private messageService: MessageService) 
     {
         this.ViewModel = 
         {
@@ -159,7 +163,7 @@ export class PersonalInformation
         request.ContactPersonPhone = this.ViewModel.ContactPersonPhone;
         request.CorporateEmail = this.ViewModel.CorporateEmail;
         request.CorporatePhone = this.ViewModel.CorporatePhone;
-        request.DateOfBirth = this.ViewModel.DateOfBirth;
+        request.DateOfBirth = new Date(this.ViewModel.DateOfBirth).toISOString().split('T')[0];
         request.DocumentType = this.ViewModel.SelectedDocumentType.Value;
         request.DocumentValue = this.ViewModel.DocumentValue;
         request.LastName = this.ViewModel.LastName;
@@ -179,6 +183,7 @@ export class PersonalInformation
 
     SaveClicked() 
     {
+        this.ViewModel.FormIsOk = true;
         this.Validations();
         
         if(this.ViewModel.FormIsOk)
@@ -186,8 +191,41 @@ export class PersonalInformation
             this.employeeService.CreateEmployee(this.SetRequestObject())
                                 .subscribe(
                                 {
-                                    next: () => console.log('Empleado creado'),
-                                    error: err => console.error(err)
+                                    next: (response) => 
+                                    {
+                                        if (response.ExecutionOk)
+                                        {
+                                            this.messageService.add({
+                                                                        severity: 'success',
+                                                                        summary: 'Employee Creation',
+                                                                        detail: 'The employee has been successfully',
+                                                                        key: 'ce',
+                                                                        life: 3000
+                                                                    });
+                                            
+                                        }
+                                        else
+                                        {
+                                            this.messageService.add({
+                                                severity: 'error',
+                                                summary: 'Employee Creation',
+                                                detail: response.Errors.join(', '),
+                                                key: 'ce',
+                                                life: 3000
+                                            });
+                                        }
+                                        
+                                    },
+                                    error: err => {
+                                        alert(JSON.stringify(err));
+                                        this.messageService.add({
+                                            severity: 'error',
+                                            summary: 'Employee Creation',
+                                            detail: 'There was an error creating the employee',
+                                            key: 'ce',
+                                            life: 3000
+                                        });
+                                    }
                                 });
         }    
     }

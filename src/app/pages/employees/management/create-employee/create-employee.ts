@@ -22,16 +22,20 @@ export class CreateEmployee implements OnInit
     BreadCrumb: MenuItem[] = [];
     Home: MenuItem | undefined;
 
-    CreateEmployee: CreateEmployeeVm;
+    ViewModel: CreateEmployeeVm;
 
     constructor()
     {
-        this.CreateEmployee = 
+        this.ViewModel = 
         {
             CliksOnCi: 0,
             CliksOnEd: 0,
             CliksOnPi: 0,
-            CliksOnWe:0
+            CliksOnWe:0,
+
+            DisabledCi:true,
+            DisabledEd:true,
+            DisabledWe:true
         };
     }
 
@@ -58,10 +62,17 @@ export class CreateEmployee implements OnInit
     {
         switch(tab)
         {
-            case "PI": this.CreateEmployee.CliksOnPi++; break;
-            case "CI": this.CreateEmployee.CliksOnCi++; break;
-            case "WE": this.CreateEmployee.CliksOnWe++; break;
-            case "ED": this.CreateEmployee.CliksOnEd++; break;
+            case "PI": this.ViewModel.CliksOnPi++; break;
+            case "CI": this.ViewModel.CliksOnCi++; break;
+            case "WE": this.ViewModel.CliksOnWe++; break;
+            case "ED": this.ViewModel.CliksOnEd++; break;
         }
+    }
+
+    ActivateTabs()
+    {
+        this.ViewModel.DisabledCi = false;
+        this.ViewModel.DisabledWe = false;
+        this.ViewModel.DisabledEd = false;
     }
 }

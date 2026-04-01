@@ -4,4 +4,8 @@ export interface CreateEmployeeVm
     CliksOnCi:number;
     CliksOnWe:number;
     CliksOnEd:number;
+
+    DisabledCi:boolean;
+    DisabledWe:boolean;
+    DisabledEd:boolean;
 }
