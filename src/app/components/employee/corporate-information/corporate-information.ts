@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SelectModule } from "primeng/select";
 import { FormsModule } from '@angular/forms';
 import { CorporateInormationVm } from '../../../../ViewModels/Employee/CorporateInformationVm';
@@ -17,6 +17,7 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class CorporateInformation 
 {
+    @Input() IdEmployee:number = 0;
     CorporateInformation:CorporateInormationVm;
 
     constructor()

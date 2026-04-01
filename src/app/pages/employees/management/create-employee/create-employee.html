@@ -10,7 +10,7 @@
       <p-card class="col-12">
             <div class="row g-2">
                 <div class="col-12">
-                    <p-tabs value="0" (valueChange)="OnTabChange($event)">
+                    <p-tabs [(value)]="ViewModel.ActiveTab" (valueChange)="OnTabChange($event)">
                         <p-tablist>
                             <p-tab value="PI">
                               <i class="pi pi-address-book mr-2"></i>
@@ -31,10 +31,10 @@
                         </p-tablist>
                         <p-tabpanels>
                           <p-tabpanel value="PI">
-                              <app-personal-information (OnEmployeeCreated)="ActivateTabs();"></app-personal-information>
+                              <app-personal-information (OnEmployeeCreated)="ActivateTabs($event);"></app-personal-information>
                           </p-tabpanel>
                           <p-tabpanel value="CI">
-                              <app-corporate-information></app-corporate-information>
+                              <app-corporate-information [IdEmployee]="ViewModel.IdEmployee"></app-corporate-information>
                           </p-tabpanel>
                           <p-tabpanel value="WE">
                               <app-work-experience></app-work-experience>

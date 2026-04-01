@@ -25,7 +25,7 @@ import { MessageService } from 'primeng/api';
 
 export class PersonalInformation 
 {
-    @Output() OnEmployeeCreated = new EventEmitter<void>();
+    @Output() OnEmployeeCreated = new EventEmitter<number>();
     ViewModel:PersonalInormationVm;
 
     constructor(private cd: ChangeDetectorRef,
@@ -202,7 +202,7 @@ export class PersonalInformation
                                                                         key: 'ce',
                                                                         life: 3000
                                                                     });
-                                         this.OnEmployeeCreated.emit();   
+                                         this.OnEmployeeCreated.emit(response.ResponseValue);   
                                         }
                                         else
                                         {

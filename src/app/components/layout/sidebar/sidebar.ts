@@ -21,18 +21,18 @@ export class Sidebar
     {
         label: 'Employees',
         icon: 'pi pi-folder',
-        expanded: true,
+        expanded: false,
         children: [
         {
             label: 'Management',
             icon: 'pi pi-id-card',
-            expanded: true,
+            expanded: false,
             data: { url: '/main/employees/management' }
         },
         {
             label: 'Career',
             icon: 'pi pi-gauge',
-            expanded: true,
+            expanded: false,
             children: [
             {
                 label: 'Give Feedback',
@@ -52,9 +52,20 @@ export class Sidebar
         }]
     },
     {
+        label: 'Human Resources',
+        icon: 'pi pi-folder',
+        expanded: false,
+        children: [
+        {
+            label: 'Salary Policy',
+            icon: 'pi pi-wallet',
+            data: { url: '/main/human-resources/salary-policy' }
+        }]
+    },
+    {
         label: 'Positions',
         icon: 'pi pi-folder',
-        expanded: true,
+        expanded: false,
         children: [
         {
             label: 'Open Positions',
@@ -75,83 +86,83 @@ export class Sidebar
     {
         label: 'Assessments',
         icon: 'pi pi-folder',
-        expanded: true,
+        expanded: false,
         children: [
         {
             label: 'Register Assessment',
             icon: 'pi pi-pen-to-square',
-            expanded: true,
+            expanded: false,
             data: { url: '/dashboard' }
         },
         {
             label: 'My Assessments',
             icon: 'pi pi-list-check',
-            expanded: true,
+            expanded: false,
             data: { url: '/dashboard' }
         }]
     },
     {
         label: 'Financial',
         icon: 'pi pi-folder',
-        expanded: true,
+        expanded: false,
         children: [
         {
             label: 'Billing',
             icon: 'pi pi-receipt',
-            expanded: true,
+            expanded: false,
             children: [
             {
                 label: 'Purchase Orders',
                 icon: 'pi pi-file',
-                expanded: true,
+                expanded: false,
                 data: { url: '/dashboard' }
             },
             {
                 label: 'Billing',
                 icon: 'pi pi-dollar',
-                expanded: true,
+                expanded: false,
                 data: { url: '/dashboard' }
             },
             {
                 label: 'Payments',
                 icon: 'pi pi-money-bill',
-                expanded: true,
+                expanded: false,
                 data: { url: '/dashboard' }
             }]
         },
         {
               label: 'Payroll',
               icon: 'pi pi-calculator',
-              expanded: true,
+              expanded: false,
               children: [
               {
                   label: 'Vacations',
                   icon: 'pi pi-sun',
-                  expanded: true,
+                  expanded: false,
                   children: [
                   {
                       label: 'Request Time Off',
                       icon: 'pi pi-clock',
-                      expanded: true,
+                      expanded: false,
                       data: { url: '/dashboard' }
                   },
                   {
                       label: 'Time Off Requests',
                       icon: 'pi pi-calendar-clock',
-                      expanded: true,
+                      expanded: false,
                       data: { url: '/dashboard' }
                   }]
               },
               {
                   label: 'Payments',
                   icon: 'pi pi-building-columns',
-                  expanded: true,
+                  expanded: false,
                   data: { url: '/dashboard' }
               },
               {
                   label: 'Contracts',
                   icon: 'pi pi-envelope',
-                  expanded: true,
+                  expanded: false,
                   data: { url: '/dashboard' }
               }]
         }]
@@ -159,19 +170,19 @@ export class Sidebar
     {
         label: 'Clients',
         icon: 'pi pi-folder',
-        expanded: true,  
+        expanded: false,  
         children: 
         [
             {
                 label: 'Management',
                 icon: 'pi pi-address-book',
-                expanded: true,
+                expanded: false,
                 data: { url: '/dashboard' }
             },
             {
                 label: 'Users',
                 icon: 'pi pi-users',
-                expanded: true,
+                expanded: false,
                 data: { url: '/dashboard' }
             }    
         ]

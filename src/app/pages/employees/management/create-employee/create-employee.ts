@@ -9,10 +9,11 @@ import { PersonalInformation } from "../../../../components/employee/personal-in
 import { CorporateInformation } from "../../../../components/employee/corporate-information/corporate-information";
 import { WorkExperience } from "../../../../components/employee/work-experience/work-experience";
 import { Education } from "../../../../components/employee/education/education";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-create-employee',
-  imports: [BreadcrumbModule, RouterModule, CardModule, TabsModule, PersonalInformation, CorporateInformation, WorkExperience, Education],
+  imports: [BreadcrumbModule, RouterModule, CardModule, TabsModule, PersonalInformation, CorporateInformation, WorkExperience, Education, FormsModule],
   standalone:true,
   templateUrl: './create-employee.html',
   styleUrl: './create-employee.css',
@@ -28,6 +29,8 @@ export class CreateEmployee implements OnInit
     {
         this.ViewModel = 
         {
+            ActiveTab: 0,
+
             CliksOnCi: 0,
             CliksOnEd: 0,
             CliksOnPi: 0,
@@ -35,7 +38,9 @@ export class CreateEmployee implements OnInit
 
             DisabledCi:true,
             DisabledEd:true,
-            DisabledWe:true
+            DisabledWe:true,
+
+            IdEmployee:0
         };
     }
 
@@ -69,8 +74,9 @@ export class CreateEmployee implements OnInit
         }
     }
 
-    ActivateTabs()
+    ActivateTabs(employeeId:number)
     {
+        this.ViewModel.IdEmployee = employeeId;
         this.ViewModel.DisabledCi = false;
         this.ViewModel.DisabledWe = false;
         this.ViewModel.DisabledEd = false;
