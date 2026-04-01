@@ -140,6 +140,11 @@
                     <p-sortIcon field="lastName"></p-sortIcon>
                 </th>
 
+                <th pSortableColumn="corporateEmail">
+                    Corporate Email
+                    <p-sortIcon field="corporateEmail"></p-sortIcon>
+                </th>
+
                 <th pSortableColumn="area">
                     Area
                     <p-sortIcon field="area"></p-sortIcon>
@@ -172,6 +177,7 @@
 
                 <td>{{ Employee.Name }}</td>
                 <td>{{ Employee.LastName }}</td>
+                <td>{{ Employee.CorporateEmail }}</td>
                 <td>{{ Employee.Area }}</td>
                 <td>{{ Employee.Position }}</td>
                 <td>{{ Employee.Rol }}</td>

@@ -100,6 +100,7 @@ export class Management implements OnInit
             SelectedEmployee: 
             {
                 Area: "",
+                CorporateEmail:"",
                 IdEmployee:0,
                 IsSelected:false,
                 LastName:"",
@@ -266,6 +267,7 @@ export class Management implements OnInit
             vm.IdEmployee = record.Id;
             vm.Name = record.Name;
             vm.LastName = record.LastName;
+            vm.CorporateEmail = record.CorporateEmail;
             vm.Area = record.Area;
             vm.Position = record.Position;
             vm.Rol = record.Rol;
