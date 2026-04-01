@@ -202,7 +202,7 @@ export class PersonalInformation
                                                                         key: 'ce',
                                                                         life: 3000
                                                                     });
-                                            
+                                         this.OnEmployeeCreated.emit();   
                                         }
                                         else
                                         {
