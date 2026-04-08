@@ -1,5 +1,5 @@
 export interface GetSalaryByPositionAndSeniorityRequestDto
 {
     IdPosition: number;
-    Seniority: number;
+    IdSeniority: number;
 }

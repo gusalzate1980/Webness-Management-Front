@@ -12,4 +12,8 @@ export interface CorporateInormationVm
 
     Seniorities:DropdownVm[];
     SelectedSeniority:DropdownVm;
+
+    Salary:number;
+
+    BlockedScreen:boolean;
 }

@@ -44,6 +44,7 @@
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
                     <p-select   [options]="CorporateInformation.Seniorities" 
                                 [(ngModel)]="CorporateInformation.SelectedSeniority" 
+                                (onChange)="GetSalary()"
                                 optionLabel="Label" placeholder="Select a Seniority" /> 
                 </div>
             </div>
@@ -57,7 +58,7 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <input type="text" pInputText  />
+                    <input type="text" pInputText readonly disabled="true" [(ngModel)]="CorporateInformation.Salary"/>
                 </div>
             </div>
         </div>
@@ -154,3 +155,20 @@
         </div>
     </div>
 </div>
+
+<p-blockUI [blocked]="CorporateInformation.BlockedScreen">
+
+    @if (CorporateInformation.BlockedScreen) {
+        <div class="spinner-container">
+
+            <p-progress-spinner
+                strokeWidth="8"
+                fill="transparent"
+                animationDuration=".5s"
+                [style]="{ width: '80px', height: '80px' }">
+            </p-progress-spinner>
+
+        </div>
+    }
+
+</p-blockUI>

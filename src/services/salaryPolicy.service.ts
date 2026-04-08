@@ -20,7 +20,7 @@ export class SalaryPolicyService
 
     constructor(private http: HttpClient) {}
 
-    GetSalaryByPositionAndSeniority(request: GetSalaryByPositionAndSeniorityRequestDto) : Observable<ApiResponseDto<WildCardDto>>
+    GetSalaryByPositionAndSeniority(request: ApiRequestDto<GetSalaryByPositionAndSeniorityRequestDto>) : Observable<ApiResponseDto<WildCardDto>>
     {
         const url = `${this.ApiUrl}SalaryPolicy/GetSalaryByPositionAndSeniority`;
         return this.http.post<ApiResponseDto<WildCardDto>>(url, request);
