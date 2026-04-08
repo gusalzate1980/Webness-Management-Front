@@ -36,9 +36,9 @@ export class CreateEmployee implements OnInit
             CliksOnPi: 0,
             CliksOnWe:0,
 
-            DisabledCi:true,
-            DisabledEd:true,
-            DisabledWe:true,
+            DisabledCi:false,
+            DisabledEd:false,
+            DisabledWe:false,
 
             IdEmployee:0
         };

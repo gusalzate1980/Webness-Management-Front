@@ -47,6 +47,11 @@ export class CorporateInformation
       };
     }
 
+    SetPositions()
+    {
+        this.CorporateInformation.Positions = Lists.AllPositions.filter(x=>x.Parent == this.CorporateInformation.SelectedArea.Value);
+    }
+
     ChangeArea()
     {
         this.CorporateInformation.Positions = Lists.AllPositions.filter(x=>x.Parent == this.CorporateInformation.SelectedArea.Value);       

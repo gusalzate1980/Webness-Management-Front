@@ -22,21 +22,21 @@ export class Lists
         { Label: 'Accounting', Value: 8, Parent:1 },
         { Label: 'Billing', Value: 9, Parent:1 },
         { Label: 'Payroll', Value: 10, Parent:1 },
-        { Label: 'Software Manager', Value: 11, Parent:1 },
+        { Label: 'Software Manager', Value: 11, Parent:4 },
         { Label: 'Cfo', Value: 12, Parent:1 }
     ];
 
     static readonly Seniorities: DropdownVm[]= 
     [
-        { Label: 'Junior 1', Value: 1},
-        { Label: 'Junior 2', Value: 2},
-        { Label: 'Junior 3', Value: 3},
-        { Label: 'Intermediate 1', Value: 4},
-        { Label: 'Intermediate 2', Value: 5},
-        { Label: 'Intermediate 3', Value: 6},
-        { Label: 'Senior 1', Value: 6},
-        { Label: 'Senior 2', Value: 8},
-        { Label: 'Senior 3', Value: 9}
+        { Label: 'Junior Basic', Value: 1},
+        { Label: 'Junior Intermediate', Value: 2},
+        { Label: 'Junior Advance', Value: 3},
+        { Label: 'Semi Senior Basic', Value: 4},
+        { Label: 'Semi Senior Intermediate', Value: 5},
+        { Label: 'Semi Senior Advance', Value: 6},
+        { Label: 'Senior Basic', Value: 6},
+        { Label: 'Sesnior Intermediate', Value: 8},
+        { Label: 'Senior Advance', Value: 9}
     ];
 
     static readonly Roles: DropdownVm[]=

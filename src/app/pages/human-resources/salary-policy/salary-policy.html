@@ -1,0 +1,72 @@
+<p-toast position="center" key="ce" />
+<div class="card">
+  <div class="container-fluid mt-2">
+
+    <!-- Breadcrumb -->
+    <div class="row g-2">
+      <div class="col-12">
+        <p-breadcrumb [model]="BreadCrumb" [home]="Home"></p-breadcrumb>
+      </div>
+    </div>
+
+    <p-card class="col-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <p-accordion [value]="['0']">
+                        @for (position of ViewModel.Policies.Positions; track position.IdPosition) 
+                        {
+                            <p-accordion-panel [value]="position.IdPosition"> 
+                            <p-accordion-header>{{ position.Name }}</p-accordion-header>
+                            <p-accordion-content>
+                                <p-table    [value]="position.Seniorities"
+                                            dataKey="Name"
+                                            [rowHover]="true"
+                                            responsiveLayout="scroll"
+                                            class="p-datatable-sm">    
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th>
+                                                Seniority
+                                            </th>
+                                            <th>
+                                                Salary
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-Seniority>
+                                        <tr>
+                                            <td>{{ Seniority.Name }}</td>
+                                            <td><input type="text" pInputText [(ngModel)]="Seniority.Salary" /></td>
+                                            <td><p-button severity="success" label="Save" icon="pi pi-save" (onClick)="SaveSalaryPolicy(Seniority,position.Name)"/></td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </p-accordion-content>
+                        </p-accordion-panel>
+                        }
+                    </p-accordion>
+                </div>
+            </div>
+    </p-card>
+                        
+
+  </div>
+</div>  
+
+<p-blockUI [blocked]="ViewModel.BlockedScreen">
+
+    @if (ViewModel.BlockedScreen) {
+        <div class="spinner-container">
+
+            <p-progress-spinner
+                strokeWidth="8"
+                fill="transparent"
+                animationDuration=".5s"
+                [style]="{ width: '80px', height: '80px' }">
+            </p-progress-spinner>
+
+        </div>
+    }
+
+</p-blockUI>

@@ -6,8 +6,7 @@ import { GiveFeedback } from './pages/employees/Career/give-feedback/give-feedba
 import { MyFeedBack } from './pages/employees/Career/my-feed-back/my-feed-back';
 import { OneOnOne } from './pages/employees/Career/one-on-one/one-on-one';
 import { CreateEmployee } from './pages/employees/management/create-employee/create-employee';
-
-
+import { SalaryPolicy } from './pages/human-resources/salary-policy/salary-policy';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -34,6 +33,16 @@ export const routes: Routes = [
               { path: 'one-on-one', component: OneOnOne }
             ]
         }]
+      },
+      {
+        path: 'human-resources',
+        children: 
+        [
+          {
+            path: 'salary-policy',
+            component: SalaryPolicy 
+          }
+        ]
       }]
 },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
