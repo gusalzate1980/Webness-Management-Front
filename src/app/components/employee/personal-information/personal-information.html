@@ -32,6 +32,14 @@
             {
                 <p-message severity="warn" icon="pi pi-exclamation-circle">Only PNG, JPG or JPEG files are allowed</p-message>
             }
+            @if(ViewModel.ShowMandatoryProfilePicture)
+            {
+                <p-message severity="warn" >
+                    <ul>
+                        <li>This field is mandatory</li>
+                    </ul>
+                </p-message>
+            }
         </div>
     </div>
 

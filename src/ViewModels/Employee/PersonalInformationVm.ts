@@ -4,6 +4,7 @@ export interface PersonalInormationVm
 {
     SelectedFile: File|null;
     ShowErrorProfilePicture:boolean;
+    ShowMandatoryProfilePicture:boolean;
     
     ImagePreview: string;
 

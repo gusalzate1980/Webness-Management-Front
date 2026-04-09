@@ -2,8 +2,6 @@ import { DropdownVm } from "../Common/DropdownVm";
 
 export interface CorporateInormationVm
 {
-    //SelectedFile: File|null;
-    
     Areas:DropdownVm[];
     SelectedArea:DropdownVm;
 
@@ -16,4 +14,25 @@ export interface CorporateInormationVm
     Salary:number;
 
     BlockedScreen:boolean;
+
+    StartDate:string;
+    EnableEndDate:boolean;
+    EndDate:string;
+
+    HasEndDateChecked:boolean;
+    HasBossChecked:boolean;
+
+    DisableBossDropdown:boolean;
+
+    BossList:DropdownVm[];
+    SelectedBoss:DropdownVm;
+
+    FormIsOk:boolean;
+
+    ShowAreaError:boolean;
+    ShowPositionError:boolean;
+    ShowSeniorityError:boolean;
+    ShowStartDateError:boolean;
+    ShowEndDateError:boolean;
+    ShowBossError:boolean;
 }

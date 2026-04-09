@@ -1,4 +1,5 @@
 {{ IdEmployee }}
+<p-toast position="center" key="ce" />
 <div class="card">
   <div class="container-fluid mt-2">
     
@@ -16,6 +17,16 @@
                                 (onChange)="SetPositions();"
                                 optionLabel="Label" placeholder="Select an Area" />
                 </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(CorporateInformation.ShowAreaError)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                                <li>Select an Area</li>
+                            </ul>
+                        </p-message>
+                    }
+                </div>
             </div>
         </div>
 
@@ -29,7 +40,18 @@
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
                     <p-select   [options]="CorporateInformation.Positions" 
                                 [(ngModel)]="CorporateInformation.SelectedPosition" 
+                                (onChange)="GetSalary(1)"
                                 optionLabel="Label" placeholder="Select a Position" />
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(CorporateInformation.ShowPositionError)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                                <li>Select a Position</li>
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -44,8 +66,18 @@
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
                     <p-select   [options]="CorporateInformation.Seniorities" 
                                 [(ngModel)]="CorporateInformation.SelectedSeniority" 
-                                (onChange)="GetSalary()"
+                                (onChange)="GetSalary(2)"
                                 optionLabel="Label" placeholder="Select a Seniority" /> 
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(CorporateInformation.ShowSeniorityError)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                                <li>Select a Seniority</li>
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -71,20 +103,18 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd" />
+                    <p-datepicker   [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd" 
+                                    [(ngModel)]="CorporateInformation.StartDate"/>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
-            <div class="row g-2">
-                <div class="col-12">
-                    <span class="form-label">Is Boss</span>
-                </div>
-            </div>
-            <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <p-toggleswitch  />
+                    @if(CorporateInformation.ShowStartDateError)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                                <li>Select a Start Date</li>
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
@@ -97,7 +127,8 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <p-toggleswitch  />
+                    <p-toggleswitch [(ngModel)]="CorporateInformation.HasEndDateChecked" 
+                                    (onChange)="HasEndDateCheckedChange($event)" />
                 </div>
             </div>
         </div>
@@ -110,48 +141,70 @@
             </div>
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    <p-datepicker [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd" />
+                    <p-datepicker   [iconDisplay]="'input'" [showIcon]="true" inputId="icondisplay" dateFormat="yy-mm-dd" 
+                                    [disabled]="!CorporateInformation.EnableEndDate"
+                                    [(ngModel)]="CorporateInformation.EndDate"/>
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(CorporateInformation.ShowEndDateError)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                                <li>Select a End Date</li>
+                            </ul>
+                        </p-message>
+                    }
                 </div>
             </div>
         </div>
 
-        <div class="col-12">
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">&nbsp;</div>
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
             <div class="row g-2">
                 <div class="col-12">
-                    <span class="form-label">Contract</span>
+                    <span class="form-label">Has Boss</span>
                 </div>
             </div>
             <div class="row g-2">
-                <div class="col-12">
-                    <p-fileUpload
-                        name="files[]"
-                        url="/api/upload"
-                        [multiple]="true"
-                        [showUploadButton]="false"
-                        [showCancelButton]="false"
-                        chooseLabel="Choose files to Upload"
-                        styleClass="custom-upload"
-                    >
-
-                        <ng-template pTemplate="content">
-                            <div class="upload-container">
-                                <i class="pi pi-cloud-upload upload-icon"></i>
-                                <div class="drag-text">
-                                    or drag and drop them here
-                                </div>
-                            </div>
-                        </ng-template>
-
-                    </p-fileUpload>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <p-toggleswitch  (onChange)="HasBossCheckedChange($event)"/>
                 </div>
             </div>
         </div>
-        
+
+        <div class="col-12 col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <span class="form-label">Boss</span>
+                </div>
+            </div>
+            <div class="row g-2">
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    <p-select   [options]="CorporateInformation.BossList" 
+                                [(ngModel)]="CorporateInformation.SelectedBoss" 
+                                [disabled]="CorporateInformation.DisableBossDropdown"
+                                optionLabel="Label" placeholder="Select a boss" /> 
+                </div>
+                <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
+                    @if(CorporateInformation.ShowBossError)
+                    {
+                        <p-message severity="warn">
+                            <ul>
+                                <li>Select a Boss</li>
+                            </ul>
+                        </p-message>
+                    }
+                </div>
+            </div>
+        </div>
+
         <div class="col-12">
             <p-button
                 label="Save"
                 severity="help"
-                icon="pi pi-save" />
+                icon="pi pi-save"
+                (onClick)="AddCorporateInformation()" />
         </div>
     </div>
 </div>

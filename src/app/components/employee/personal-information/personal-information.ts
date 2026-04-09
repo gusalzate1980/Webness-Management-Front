@@ -77,6 +77,7 @@ export class PersonalInformation
             ErrorsPersonalPhone:[],
 
             ShowErrorProfilePicture:false,
+            ShowMandatoryProfilePicture:false,
 
             FormIsOk:true,
 
@@ -153,6 +154,15 @@ export class PersonalInformation
         this.ValidateContactPersonName();
         this.ValidateContactPersonPhone();
         this.ValidateRol();
+        if(this.ViewModel.SelectedFile == null)
+        {
+            this.ViewModel.ShowMandatoryProfilePicture = true;
+            this.ViewModel.FormIsOk= false;
+        }
+        else        
+        {
+            this.ViewModel.ShowMandatoryProfilePicture = false;
+        }
     }
 
     private SetRequestObject(): CreateEmployeeRequest
