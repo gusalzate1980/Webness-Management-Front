@@ -365,7 +365,7 @@
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
                     <p-select   [options]="ViewModel.Roles" 
                                 [(ngModel)]="ViewModel.SelectedRol" 
-                                optionLabel="Label" placeholder="Select a Document Type" />
+                                optionLabel="Name" placeholder="Select a Rol" />
                 </div>
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
                     @if(ViewModel.ShowErrorRol)
@@ -380,10 +380,9 @@
             </div>
         </div>
 
-        
         <div class="col-12">
             <p-button
-                label="Save"
+                label="{{ViewModel.ButtonSaveText}}"
                 severity="help"
                 icon="pi pi-save"
                 (onClick)="SaveClicked();" />

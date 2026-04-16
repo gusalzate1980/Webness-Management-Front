@@ -1,3 +1,4 @@
+import { UserRolDto } from "../Dto/UserRolDto";
 import { DropdownVm } from "../ViewModels/Common/DropdownVm";
 
 export class Lists 
@@ -39,17 +40,17 @@ export class Lists
         { Label: 'Senior Advance', Value: 9}
     ];
 
-    static readonly Roles: DropdownVm[]=
+    static readonly Roles: UserRolDto[]=
     [
-            { Label: 'App Admin', Value: 1 },
-            { Label: 'Client Admin', Value: 2 },
-            { Label: 'Client Human Resources', Value: 3 },
-            { Label: 'Client Tech Manager', Value: 4 },
-            { Label: 'Engineer', Value: 5 },
-            { Label: 'Financial', Value: 6 },
-            { Label: 'Human Resources', Value: 6 },
-            { Label: 'Key Account Manager', Value: 8 },
-            { Label: 'Software Manager', Value: 9 }
+            { Name: 'App Admin', Id: 1, IsEmployeeRol: true },
+            { Name: 'Client Admin', Id: 2, IsEmployeeRol: false },
+            { Name: 'Client Human Resources', Id: 3, IsEmployeeRol: false },
+            { Name: 'Client Tech Manager', Id: 4, IsEmployeeRol: false },
+            { Name: 'Engineer', Id: 5, IsEmployeeRol: true },
+            { Name: 'Financial', Id: 6 , IsEmployeeRol: true},
+            { Name: 'Human Resources', Id: 6, IsEmployeeRol: true },
+            { Name: 'Key Account Manager', Id: 8, IsEmployeeRol: true },
+            { Name: 'Software Manager', Id: 9, IsEmployeeRol: true }
     ];
 
     static readonly DocumentTypes: DropdownVm[]=

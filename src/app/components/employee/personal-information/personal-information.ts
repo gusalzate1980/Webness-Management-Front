@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from 'primeng/inputtext';
@@ -26,6 +26,8 @@ import { MessageService } from 'primeng/api';
 export class PersonalInformation 
 {
     @Output() OnEmployeeCreated = new EventEmitter<number>();
+    @Input() IdEmployee:number = 0;
+
     ViewModel:PersonalInormationVm;
 
     constructor(private cd: ChangeDetectorRef,
@@ -44,11 +46,12 @@ export class PersonalInformation
             DocumentValue:"",
             ImagePreview:"images/default/people.png",
             LastName:"",
-            Roles:Lists.Roles,
+            Roles:Lists.Roles.filter(x=>x.IsEmployeeRol),
             SelectedRol:
             {
-              Label:"",
-              Value:0
+              Name:"",
+              Id:0,
+              IsEmployeeRol:true
             },
             ShowErrorRol:false,
             SelectedFile: null,
@@ -100,8 +103,8 @@ export class PersonalInformation
             ContactPersonPhone:"",
             ShowErrorContactPersonPhone:false,
             ErrorsContactPersonPhone:[],
-
-
+            
+            ButtonSaveText:"Create Employee"
         };
     }
 
@@ -186,7 +189,7 @@ export class PersonalInformation
             request.ProfilePicture = this.ViewModel.SelectedFile;
         }
 
-        request.Rol = this.ViewModel.SelectedRol.Value;
+        request.Rol = this.ViewModel.SelectedRol.Id;
 
         return request;
     }
@@ -212,7 +215,9 @@ export class PersonalInformation
                                                                         key: 'ce',
                                                                         life: 3000
                                                                     });
-                                         this.OnEmployeeCreated.emit(response.ResponseValue);   
+                                            this.IdEmployee = response.ResponseValue.IdPerson;
+                                            this.ViewModel.ButtonSaveText = "Update Employee";
+                                            this.OnEmployeeCreated.emit(response.ResponseValue);   
                                         }
                                         else
                                         {
@@ -227,7 +232,6 @@ export class PersonalInformation
                                         
                                     },
                                     error: err => {
-                                        alert(JSON.stringify(err));
                                         this.messageService.add({
                                             severity: 'error',
                                             summary: 'Employee Creation',
@@ -448,7 +452,7 @@ export class PersonalInformation
 
     private ValidateRol()
     {
-        if(this.ViewModel.SelectedRol.Value == 0)
+        if(this.ViewModel.SelectedRol.Id == 0)
         {
             this.ViewModel.ShowErrorRol = true;
             this.ViewModel.FormIsOk= false;

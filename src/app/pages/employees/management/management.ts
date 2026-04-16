@@ -91,8 +91,9 @@ export class Management implements OnInit
                 },
                 SelectedRol: 
                 {
-                    Label:"",
-                    Value:0
+                    Name:"",
+                    Id:0,
+                    IsEmployeeRol:true
                 },
                 BlockedScreen:false
             },
@@ -119,7 +120,7 @@ export class Management implements OnInit
 
     private LoadRoles()
     {
-        this.EmployeeManagementVm.SearchEmployee.Roles = Lists.Roles;
+        this.EmployeeManagementVm.SearchEmployee.Roles = Lists.Roles.filter(x=>x.IsEmployeeRol);
     }
 
     private LoadAreas()
@@ -149,8 +150,9 @@ export class Management implements OnInit
         };
         this.EmployeeManagementVm.SearchEmployee.SelectedRol =  
         {
-            Label: "",
-            Value:0
+            Name: "",
+            Id:0,
+            IsEmployeeRol:true
         };
 
         this.EmployeeManagementVm.SearchEmployee.Positions = [];
@@ -294,7 +296,7 @@ export class Management implements OnInit
                     PageSize: 20
                 },
                 Position: this.EmployeeManagementVm.SearchEmployee.SelectedPosition.Value,
-                Rol: this.EmployeeManagementVm.SearchEmployee.SelectedRol.Value
+                Rol: this.EmployeeManagementVm.SearchEmployee.SelectedRol.Id
             },
             LoggedUser: 
             {

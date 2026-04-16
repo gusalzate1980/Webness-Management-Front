@@ -29,15 +29,15 @@ export class CreateEmployee implements OnInit
     {
         this.ViewModel = 
         {
-            ActiveTab: 0,
+            ActiveTab: "PI",
 
             CliksOnCi: 0,
             CliksOnEd: 0,
             CliksOnPi: 0,
             CliksOnWe:0,
 
-            DisabledCi:false,
-            DisabledEd:false,
+            DisabledCi:true,
+            DisabledEd:true,
             DisabledWe:false,
 
             IdEmployee:0

@@ -19,11 +19,12 @@ import { WildCardDto } from '../../../../Dto/WildCardDto';
 import { MessageService } from 'primeng/api';
 import { MessageModule } from "primeng/message";
 import { AddCorporateInformationRequestDto } from '../../../../Dto/AddCorporateInformationRequestDto';
+import { ToastModule } from "primeng/toast";
 
 @Component({
   selector: 'app-corporate-information',
-  imports: [SelectModule, FormsModule, DatePickerModule, ToggleSwitchModule, FileUploadModule, ButtonModule, InputTextModule, BlockUIModule, 
-            ProgressSpinnerModule, MessageModule],
+  imports: [SelectModule, FormsModule, DatePickerModule, ToggleSwitchModule, FileUploadModule, ButtonModule, InputTextModule, BlockUIModule,
+    ProgressSpinnerModule, MessageModule, ToastModule],
   templateUrl: './corporate-information.html',
   providers:[MessageService],
   styleUrl: './corporate-information.css',

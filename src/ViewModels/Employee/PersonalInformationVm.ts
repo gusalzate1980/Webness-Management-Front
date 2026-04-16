@@ -1,3 +1,4 @@
+import { UserRolDto } from "../../Dto/UserRolDto";
 import { DropdownVm } from "../Common/DropdownVm";
 
 export interface PersonalInormationVm
@@ -56,9 +57,11 @@ export interface PersonalInormationVm
     ShowErrorContactPersonPhone:boolean;
     ErrorsContactPersonPhone:string[];
 
-    Roles:DropdownVm[];
-    SelectedRol:DropdownVm;
+    Roles:UserRolDto[];
+    SelectedRol:UserRolDto;
     ShowErrorRol:boolean;
 
     FormIsOk:boolean;
+
+    ButtonSaveText:string;
 }

@@ -1,4 +1,5 @@
 import { ApiRequestDto } from "../../Dto/ApiRequestDto";
+import { UserRolDto } from "../../Dto/UserRolDto";
 import { DropdownVm } from "../Common/DropdownVm";
 
 export interface SearchEmployeeVm
@@ -10,10 +11,10 @@ export interface SearchEmployeeVm
 
     AllPositions:DropdownVm[];
     Positions:DropdownVm[];
-    Roles:DropdownVm[];
+    Roles:UserRolDto[];
 
     SelectedArea:DropdownVm;
-    SelectedRol:DropdownVm;
+    SelectedRol:UserRolDto;
     SelectedPosition:DropdownVm;
 
     BlockedScreen:boolean;

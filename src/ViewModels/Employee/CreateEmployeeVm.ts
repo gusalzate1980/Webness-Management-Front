@@ -9,7 +9,7 @@ export interface CreateEmployeeVm
     DisabledWe:boolean;
     DisabledEd:boolean;
 
-    ActiveTab:number;
+    ActiveTab:string;
 
     IdEmployee:number;
 }
