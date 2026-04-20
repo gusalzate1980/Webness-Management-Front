@@ -98,11 +98,13 @@ export class CorporateInformation
             Value: 0
         };
         this.CorporateInformation.Positions = Lists.AllPositions.filter(x=>x.Parent == this.CorporateInformation.SelectedArea.Value);
-    }
 
-    ChangeArea()
-    {
-        this.CorporateInformation.Positions = Lists.AllPositions.filter(x=>x.Parent == this.CorporateInformation.SelectedArea.Value);       
+        this.CorporateInformation.BossList = [];
+        this.CorporateInformation.SelectedBoss = 
+        {
+            Label : "",
+            Value:0,
+        };  
     }
 
     SetRequestGetSalaryByPositionAndSeniority()
@@ -138,6 +140,7 @@ export class CorporateInformation
                         this.cd.detectChanges();
                         this.CorporateInformation.BlockedScreen = false;
 
+                        console.log("Despues del salario->"+changeEvent)
                         if(changeEvent == 1)
                             this.GetBossesByPosition();
                     }))

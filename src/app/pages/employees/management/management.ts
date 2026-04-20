@@ -206,8 +206,8 @@ export class Management implements OnInit
     console.log('Delete', this.EmployeeManagementVm?.SelectedEmployee);
     }
 
-    skills() {
-    console.log('Skills', this.EmployeeManagementVm?.SelectedEmployee);
+    Assignation() {
+    console.log('Assignation', this.EmployeeManagementVm?.SelectedEmployee);
     }
 
     private BuildMenu() 
@@ -233,10 +233,10 @@ export class Management implements OnInit
             command: () => this.delete()
             },
             {
-            label: 'Skills',
-            icon: 'pi pi-star',
+            label: 'Assignation',
+            icon: 'pi pi-briefcase',
             visible: hasSelection,
-            command: () => this.skills()
+            command: () => this.Assignation()
             }
         ];
     }
