@@ -1,0 +1,77 @@
+.paginator-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Info */
+.paginator-info {
+  font-size: 14px;
+  color: #050233;
+}
+
+/* Controls */
+.paginator-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Circle buttons */
+.circle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #050233;
+  background-color: #050233;
+  color: #b1b4b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+/* Active */
+.circle-btn.active {
+  background-color: #b1b4b8;
+  color: #050233;
+  border: 1px solid #050233;
+}
+
+/* Disabled */
+.circle-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Hover */
+.circle-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+/* Dropdown */
+.paginator-size select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #050233;
+  background-color: #050233;
+  color: #b1b4b8;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .paginator-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .paginator-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

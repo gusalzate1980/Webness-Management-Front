@@ -23,12 +23,13 @@ import { BlockUIModule } from 'primeng/blockui';
 import { finalize } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
 import { Lists } from '../../../../Constants/Lists';
+import { Paginator } from "../../../components/paginator/paginator";
 
 @Component({
   selector: 'app-management',
   standalone: true,
-  imports: [BreadcrumbModule, InputTextModule, SelectModule, FormsModule, CardModule, ButtonModule, TableModule, RadioButtonModule, 
-            MenubarModule,RouterOutlet,ProgressSpinnerModule, CommonModule,BlockUIModule],
+  imports: [BreadcrumbModule, InputTextModule, SelectModule, FormsModule, CardModule, ButtonModule, TableModule, RadioButtonModule,
+    MenubarModule, RouterOutlet, ProgressSpinnerModule, CommonModule, BlockUIModule, Paginator],
   templateUrl: './management.html',
   styleUrl: './management.css',
 })
@@ -207,7 +208,7 @@ export class Management implements OnInit
     }
 
     Assignation() {
-    console.log('Assignation', this.EmployeeManagementVm?.SelectedEmployee);
+    
     }
 
     private BuildMenu() 

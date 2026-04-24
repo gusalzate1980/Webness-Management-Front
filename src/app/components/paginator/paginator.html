@@ -1,0 +1,46 @@
+<div class="paginator-container">
+
+  <!-- Info -->
+  <div class="paginator-info">
+    Records from {{ ViewModel.StartPageRecord }} To {{ ViewModel.EndPageRecord }} Of {{ ViewModel.TotalRecords }}
+  </div>
+
+  <!-- Controles -->
+  <div class="paginator-controls">
+
+    <!-- Prev -->
+    <button class="circle-btn" 
+            (click)="GoToPage(ViewModel.SelectedPage - 1)" 
+            [disabled]="ViewModel.SelectedPage === 1" >
+      ‹
+    </button>
+
+    <!-- Pages -->
+    <ng-container *ngFor="let page of GetPages()">
+      <button 
+        class="circle-btn"
+        [ngClass]="{'active': page === ViewModel.SelectedPage}"
+        (click)="GoToPage(page)">
+        {{ page }}
+      </button>
+    </ng-container>
+
+    <!-- Next -->
+    <button class="circle-btn" 
+            (click)="GoToPage(this.ViewModel.SelectedPage + 1)" 
+            [disabled]="this.ViewModel.SelectedPage === TotalPages">
+      ›
+    </button>
+
+  </div>
+
+  <!-- Page size -->
+  <div class="paginator-size">
+    <select [(ngModel)]="this.ViewModel.RecordsPerPage" (change)="OnPageSizeChange()">
+      <option *ngFor="let size of [5,10,20,50]" [value]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+
+</div>
