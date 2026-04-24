@@ -29,7 +29,7 @@ const MyTheme = definePreset(Material, {
       500: '#050233',
       600: '#e90826',
       700: '#1f9ee7',
-      800: '#d6e40f',
+      800: '#0e0b18',
       900: '#f7419c'
     }
   }

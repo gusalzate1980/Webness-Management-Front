@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PaginatorNavigationVm } from '../../../ViewModels/Paginator/PaginatorNavigationVm';
 import { PaginatorPageVm } from '../../../ViewModels/Paginator/PaginatorPageVm';
+import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-paginator',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule, SelectModule],
   templateUrl: './paginator.html',
   styleUrl: './paginator.css',
 })
@@ -26,7 +27,8 @@ export class Paginator implements OnInit
             StartPageRecord:1,
             TotalRecords:this.TotalRecords,
             RecordsPerPage:20,
-            SelectedPage:1
+            SelectedPage:1,
+            RecordsPerPageOptions:[10,20,30,40,50,100]
         };
     }
 

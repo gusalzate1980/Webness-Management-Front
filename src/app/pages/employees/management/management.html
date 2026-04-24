@@ -84,14 +84,14 @@
             <div class="col-12 col-md-6 col-lg-4 col-xl-2">
                 <div class="row g-2">
                     <div class="col-12">
-                        <span class="form-label">Rol</span>
+                        <span class="form-label">Role</span>
                     </div>
                 </div>
                 <div class="row g-2">
                     <div class="col-12">
-                        <p-select   [options]="EmployeeManagementVm!.SearchEmployee!.Roles" 
-                                    [(ngModel)]="EmployeeManagementVm!.SearchEmployee!.SelectedRol" 
-                                    optionLabel="Label" placeholder="Select a Rol" />
+                        <p-select   [options]="EmployeeManagementVm.SearchEmployee.Roles" 
+                                    [(ngModel)]="EmployeeManagementVm.SearchEmployee.SelectedRol" 
+                                    optionLabel="Name" placeholder="Select a Rol" />
                     </div>
                 </div>
             </div>
@@ -109,7 +109,7 @@
                     label="Search"
                     severity="success"
                     icon="pi pi-search"
-                    (click)="Search()" />
+                    (click)="ClickSearch()" />
 
             </div>
         </div>
@@ -191,7 +191,8 @@
      <br/>
      <p-card>
         <app-paginator  [TotalPages]="6"
-                        [TotalRecords]="115"></app-paginator>
+                        [TotalRecords]="115"
+                        (OnPaginatorNavigation)="PaginatorChange($event)"></app-paginator>
      </p-card>
   </div>
 </div>

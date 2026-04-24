@@ -24,6 +24,7 @@ import { finalize } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
 import { Lists } from '../../../../Constants/Lists';
 import { Paginator } from "../../../components/paginator/paginator";
+import { PaginatorNavigationVm } from '../../../../ViewModels/Paginator/PaginatorNavigationVm';
 
 @Component({
   selector: 'app-management',
@@ -39,6 +40,9 @@ export class Management implements OnInit
     items: MenuItem[] | undefined;
     home: MenuItem | undefined;
     menuItems: MenuItem[] = [];
+
+    RecordsPerPage:number=20;
+    CurrentPage:number=1;
 
     private Request: ApiRequestDto<ListEmployeeRequestDto>;
 
@@ -217,27 +221,33 @@ export class Management implements OnInit
 
         this.menuItems = [
             {
-            label: 'Create',
-            icon: 'pi pi-plus',
-            routerLink: ['/main/employees/management/create-employee']
+                label: 'Create',
+                icon: 'pi pi-plus',
+                routerLink: ['/main/employees/management/create-employee']
             },
             {
-            label: 'Edit',
-            icon: 'pi pi-pencil',
-            visible: hasSelection,
-            command: () => this.edit()
+                label: 'Edit',
+                icon: 'pi pi-pencil',
+                visible: hasSelection,
+                command: () => this.edit()
             },
             {
-            label: 'Delete',
-            icon: 'pi pi-trash',
-            visible: hasSelection,
-            command: () => this.delete()
+                label: 'Delete',
+                icon: 'pi pi-trash',
+                visible: hasSelection,
+                command: () => this.delete()
             },
             {
-            label: 'Assignation',
-            icon: 'pi pi-briefcase',
-            visible: hasSelection,
-            command: () => this.Assignation()
+                label: 'Assignation',
+                icon: 'pi pi-briefcase',
+                visible: hasSelection,
+                command: () => this.Assignation()
+            },
+            {
+                label: 'End Contract',
+                icon: 'pi pi-ban',
+                visible: hasSelection,
+                command: () => this.Assignation()
             }
         ];
     }
@@ -293,8 +303,8 @@ export class Management implements OnInit
                 Name: this.EmployeeManagementVm.SearchEmployee.Name,
                 Paginator: 
                 {
-                    PageIndex: 1,
-                    PageSize: 20
+                    PageIndex: this.CurrentPage,
+                    PageSize: this.RecordsPerPage
                 },
                 Position: this.EmployeeManagementVm.SearchEmployee.SelectedPosition.Value,
                 Rol: this.EmployeeManagementVm.SearchEmployee.SelectedRol.Id
@@ -307,5 +317,20 @@ export class Management implements OnInit
             Timestamp:15151515,
             Token:""
         };
+    }
+
+    PaginatorChange(event: PaginatorNavigationVm) 
+    {
+        this.CurrentPage = event.SelectedPage;
+        this.RecordsPerPage = event.RecordsPerPage;
+
+        this.Search();
+    }
+
+    ClickSearch() 
+    {
+        this.CurrentPage = 1;
+        
+        this.Search();
     }
 }

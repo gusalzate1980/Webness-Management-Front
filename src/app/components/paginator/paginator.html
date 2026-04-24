@@ -36,11 +36,10 @@
 
   <!-- Page size -->
   <div class="paginator-size">
-    <select [(ngModel)]="this.ViewModel.RecordsPerPage" (change)="OnPageSizeChange()">
-      <option *ngFor="let size of [5,10,20,50]" [value]="size">
-        {{ size }}
-      </option>
-    </select>
+    <p-select   [options]="ViewModel.RecordsPerPageOptions" 
+                [(ngModel)]="ViewModel.RecordsPerPage" 
+                placeholder="Records per page"
+                (onChange)="OnPageSizeChange()" />
   </div>
 
 </div>

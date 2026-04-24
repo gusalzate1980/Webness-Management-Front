@@ -6,4 +6,6 @@ export interface PaginatorPageVm
 
     RecordsPerPage: number;
     SelectedPage:number;
+
+    RecordsPerPageOptions:number[];
 }
