@@ -25,6 +25,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { Lists } from '../../../../Constants/Lists';
 import { Paginator } from "../../../components/paginator/paginator";
 import { PaginatorNavigationVm } from '../../../../ViewModels/Paginator/PaginatorNavigationVm';
+import { ApiResponseDto } from '../../../../Dto/ApiResponseDto';
 
 @Component({
   selector: 'app-management',
@@ -36,10 +37,10 @@ import { PaginatorNavigationVm } from '../../../../ViewModels/Paginator/Paginato
 })
 export class Management implements OnInit 
 {
-    EmployeeManagementVm: EmployeeManagementVm;
+    ViewModel: EmployeeManagementVm;
     items: MenuItem[] | undefined;
     home: MenuItem | undefined;
-    menuItems: MenuItem[] = [];
+    GridRowOptions: MenuItem[] = [];
 
     RecordsPerPage:number=20;
     CurrentPage:number=1;
@@ -63,17 +64,17 @@ export class Management implements OnInit
                     PageSize:0
                 },
                 Position:0,
-                Rol:0
+                Role:0
             },
             LoggedUser:
             {
-                Rol:"",
+                Role:"",
                 User:""
             },
             Timestamp:1,
             Token:""
         };
-        this.EmployeeManagementVm = 
+        this.ViewModel = 
         {
             SearchEmployee:
             {
@@ -98,7 +99,7 @@ export class Management implements OnInit
                 {
                     Name:"",
                     Id:0,
-                    IsEmployeeRol:true
+                    IsEmployeeRole:true
                 },
                 BlockedScreen:false
             },
@@ -112,8 +113,9 @@ export class Management implements OnInit
                 LastName:"",
                 Name:"",
                 Position:"",
-                Rol:""
-            }
+                Role:""
+            },
+            PaginatorIsHidden:true
         };
     }
 
@@ -125,42 +127,42 @@ export class Management implements OnInit
 
     private LoadRoles()
     {
-        this.EmployeeManagementVm.SearchEmployee.Roles = Lists.Roles.filter(x=>x.IsEmployeeRol);
+        this.ViewModel.SearchEmployee.Roles = Lists.Roles.filter(x=>x.IsEmployeeRole);
     }
 
     private LoadAreas()
     {
-        this.EmployeeManagementVm.SearchEmployee.Areas = Lists.Areas;
+        this.ViewModel.SearchEmployee.Areas = Lists.Areas;
     }
 
     ChangeArea()
     {
-        this.EmployeeManagementVm.SearchEmployee.Positions = Lists.AllPositions.filter(x=>x.Parent == this.EmployeeManagementVm.SearchEmployee.SelectedArea.Value);       
+        this.ViewModel.SearchEmployee.Positions = Lists.AllPositions.filter(x=>x.Parent == this.ViewModel.SearchEmployee.SelectedArea.Value);       
     }
 
     CleanForm()
     {
-        this.EmployeeManagementVm.SearchEmployee.Name = "";
-        this.EmployeeManagementVm.SearchEmployee.LastName = "";
-        this.EmployeeManagementVm.SearchEmployee.DocumentNumber = "";
-        this.EmployeeManagementVm.SearchEmployee.SelectedArea =  
+        this.ViewModel.SearchEmployee.Name = "";
+        this.ViewModel.SearchEmployee.LastName = "";
+        this.ViewModel.SearchEmployee.DocumentNumber = "";
+        this.ViewModel.SearchEmployee.SelectedArea =  
         {
             Label: "",
             Value:0
         };
-        this.EmployeeManagementVm.SearchEmployee.SelectedPosition =  
+        this.ViewModel.SearchEmployee.SelectedPosition =  
         {
             Label: "",
             Value:0
         };
-        this.EmployeeManagementVm.SearchEmployee.SelectedRol =  
+        this.ViewModel.SearchEmployee.SelectedRol =  
         {
             Name: "",
             Id:0,
-            IsEmployeeRol:true
+            IsEmployeeRole:true
         };
 
-        this.EmployeeManagementVm.SearchEmployee.Positions = [];
+        this.ViewModel.SearchEmployee.Positions = [];
     }
 
     ngOnInit() 
@@ -182,17 +184,17 @@ export class Management implements OnInit
         this.BuildMenu();
     }
 
-    toggleSelection(employee: GridSearchEmployeeVm) 
+    OnSelectEmployee(employee: GridSearchEmployeeVm) 
     {
-        if (!this.EmployeeManagementVm) return;
+        if (!this.ViewModel) return;
 
-        if (this.EmployeeManagementVm.SelectedEmployee === employee) 
-            {
-            this.EmployeeManagementVm.SelectedEmployee = undefined as any;
+        if (this.ViewModel.SelectedEmployee === employee) 
+        {
+            this.ViewModel.SelectedEmployee = undefined as any;
         } 
         else 
         {
-            this.EmployeeManagementVm.SelectedEmployee = employee;
+            this.ViewModel.SelectedEmployee = employee;
         }
 
         this.BuildMenu();
@@ -204,11 +206,11 @@ export class Management implements OnInit
     }
 
     edit() {
-    console.log('Edit', this.EmployeeManagementVm?.SelectedEmployee);
+    console.log('Edit', this.ViewModel?.SelectedEmployee);
     }
 
     delete() {
-    console.log('Delete', this.EmployeeManagementVm?.SelectedEmployee);
+    console.log('Delete', this.ViewModel?.SelectedEmployee);
     }
 
     Assignation() {
@@ -217,9 +219,9 @@ export class Management implements OnInit
 
     private BuildMenu() 
     {
-        const hasSelection = this.EmployeeManagementVm?.SelectedEmployee != null;
-
-        this.menuItems = [
+        const hasSelection = this.ViewModel.SelectedEmployee != undefined;
+        
+        this.GridRowOptions = [
             {
                 label: 'Create',
                 icon: 'pi pi-plus',
@@ -254,14 +256,14 @@ export class Management implements OnInit
 
     Search() 
     {
+        this.ViewModel.SearchEmployee.BlockedScreen = true;
         this.BuildSearchRequest();
-        this.EmployeeManagementVm.SearchEmployee.BlockedScreen = true;
-
+        
         this.EmployeeService.GetListEmployees(this.Request)
             .pipe(finalize(() => 
             {
+                this.ViewModel.SearchEmployee.BlockedScreen = false;
                 this.cd.detectChanges();
-                this.EmployeeManagementVm.SearchEmployee.BlockedScreen = false;
             }))
             .subscribe(response => 
             {
@@ -269,26 +271,34 @@ export class Management implements OnInit
             });
     }
 
-    private BuildGrid(response: PaginatorResponseDto<ListEmployeeResponseDto>)
+    private BuildGrid(response: ApiResponseDto<PaginatorResponseDto<ListEmployeeResponseDto>>)
     {
         let i=0;
-        this.EmployeeManagementVm.GridSearchEmployee = [];
-        response.Records.forEach(record => 
+        this.ViewModel.GridSearchEmployee = [];
+
+        if (response.ExecutionOk && (response.ResponseValue?.Records?.length ?? 0) > 0)
         {
-            const vm = new GridSearchEmployeeVm();
+            this.ViewModel.PaginatorIsHidden = false;
 
-            vm.IdEmployee = record.Id;
-            vm.Name = record.Name;
-            vm.LastName = record.LastName;
-            vm.CorporateEmail = record.CorporateEmail;
-            vm.Area = record.Area;
-            vm.Position = record.Position;
-            vm.Rol = record.Rol;
-            vm.IsSelected = false;
+            response.ResponseValue?.Records.forEach(record => 
+            {
+                const vm = new GridSearchEmployeeVm();
 
-            this.EmployeeManagementVm.GridSearchEmployee.push(vm);
-            i++;
-        });
+                vm.IdEmployee = record.Id;
+                vm.Name = record.Name;
+                vm.LastName = record.LastName;
+                vm.CorporateEmail = record.CorporateEmail;
+                vm.Area = record.Area;
+                vm.Position = record.Position;
+                vm.Role = record.Role;
+                vm.IsSelected = false;
+
+                this.ViewModel.GridSearchEmployee.push(vm);
+                i++;
+            });
+
+            
+        }
     }
 
     private BuildSearchRequest()
@@ -297,21 +307,21 @@ export class Management implements OnInit
         {
             Data: 
             {
-                Area: this.EmployeeManagementVm.SearchEmployee.SelectedArea.Value,
-                DocumentNumber: this.EmployeeManagementVm.SearchEmployee.DocumentNumber,
-                LastName: this.EmployeeManagementVm.SearchEmployee.LastName,
-                Name: this.EmployeeManagementVm.SearchEmployee.Name,
+                Area: this.ViewModel.SearchEmployee.SelectedArea.Value,
+                DocumentNumber: this.ViewModel.SearchEmployee.DocumentNumber,
+                LastName: this.ViewModel.SearchEmployee.LastName,
+                Name: this.ViewModel.SearchEmployee.Name,
                 Paginator: 
                 {
                     PageIndex: this.CurrentPage,
                     PageSize: this.RecordsPerPage
                 },
-                Position: this.EmployeeManagementVm.SearchEmployee.SelectedPosition.Value,
-                Rol: this.EmployeeManagementVm.SearchEmployee.SelectedRol.Id
+                Position: this.ViewModel.SearchEmployee.SelectedPosition.Value,
+                Role: this.ViewModel.SearchEmployee.SelectedRol.Id
             },
             LoggedUser: 
             {
-                Rol:"",
+                Role:"",
                 User:""
             },
             Timestamp:15151515,

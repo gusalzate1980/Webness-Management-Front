@@ -12,6 +12,6 @@ export class CreateEmployeeRequest
     DateOfBirth: string = "";
     ContactPersonName: string = "";
     ContactPersonPhone: string = "";
-    Rol: number=0;
+    Role: number=0;
     ProfilePicture?: File;
 }

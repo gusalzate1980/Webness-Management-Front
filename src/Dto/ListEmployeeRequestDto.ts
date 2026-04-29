@@ -7,6 +7,6 @@ export interface ListEmployeeRequestDto
     DocumentNumber: string;
     Area: number;
     Position: number;
-    Rol: number;
+    Role: number;
     Paginator: PaginatorRequestDto;
 }

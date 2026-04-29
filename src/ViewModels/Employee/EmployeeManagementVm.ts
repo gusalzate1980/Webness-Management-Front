@@ -6,4 +6,5 @@ export interface EmployeeManagementVm
     SearchEmployee: SearchEmployeeVm;
     GridSearchEmployee: GridSearchEmployeeVm[];
     SelectedEmployee: GridSearchEmployeeVm;
+    PaginatorIsHidden:boolean;
 }

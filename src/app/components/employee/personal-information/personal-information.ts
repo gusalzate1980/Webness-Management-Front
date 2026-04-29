@@ -13,11 +13,15 @@ import { CreateEmployeeRequest } from '../../../../Dto/CreateEmployeeRequest';
 import { EmployeeService } from '../../../../services/employee.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ApiRequestDto } from '../../../../Dto/ApiRequestDto';
+import { BlockUI } from "primeng/blockui";
+import { ProgressSpinner } from "primeng/progressspinner";
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-personal-information',
   standalone:true,
-  imports: [ButtonModule, InputTextModule, SelectModule, FormsModule, DatePickerModule,MessageModule, ToastModule],
+  imports: [ButtonModule, InputTextModule, SelectModule, FormsModule, DatePickerModule, MessageModule, ToastModule, BlockUI, ProgressSpinner],
   providers:[MessageService],
   templateUrl: './personal-information.html',
   styleUrl: './personal-information.css',
@@ -36,6 +40,7 @@ export class PersonalInformation
     {
         this.ViewModel = 
         {
+            BlockedScreen:false,
             DocumentTypes:Lists.DocumentTypes,
             Name:"",
             SelectedDocumentType:
@@ -46,14 +51,14 @@ export class PersonalInformation
             DocumentValue:"",
             ImagePreview:"images/default/people.png",
             LastName:"",
-            Roles:Lists.Roles.filter(x=>x.IsEmployeeRol),
-            SelectedRol:
+            Roles:Lists.Roles.filter(x=>x.IsEmployeeRole),
+            SelectedRole:
             {
               Name:"",
               Id:0,
-              IsEmployeeRol:true
+              IsEmployeeRole:true
             },
-            ShowErrorRol:false,
+            ShowErrorRole:false,
             SelectedFile: null,
 
             ErrorsName:[],
@@ -168,28 +173,40 @@ export class PersonalInformation
         }
     }
 
-    private SetRequestObject(): CreateEmployeeRequest
+    private SetRequestObject(): ApiRequestDto<CreateEmployeeRequest>
     {
-        let request: CreateEmployeeRequest = new CreateEmployeeRequest();
-        request.ContactAddress = this.ViewModel.ContactAddress;
-        request.ContactPersonName = this.ViewModel.ContactPersonName;
-        request.ContactPersonPhone = this.ViewModel.ContactPersonPhone;
-        request.CorporateEmail = this.ViewModel.CorporateEmail;
-        request.CorporatePhone = this.ViewModel.CorporatePhone;
-        request.DateOfBirth = new Date(this.ViewModel.DateOfBirth).toISOString().split('T')[0];
-        request.DocumentType = this.ViewModel.SelectedDocumentType.Value;
-        request.DocumentValue = this.ViewModel.DocumentValue;
-        request.LastName = this.ViewModel.LastName;
-        request.Name = this.ViewModel.Name;
-        request.PersonalEmail = this.ViewModel.PersonalEmail;
-        request.PersonalPhone = this.ViewModel.PersonalPhone;
+        let request: ApiRequestDto<CreateEmployeeRequest> = 
+        {
+            Data : 
+            {
+                ContactAddress : this.ViewModel.ContactAddress,
+                ContactPersonName : this.ViewModel.ContactPersonName,
+                ContactPersonPhone : this.ViewModel.ContactPersonPhone,
+                CorporateEmail : this.ViewModel.CorporateEmail,
+                CorporatePhone : this.ViewModel.CorporatePhone,
+                DateOfBirth : new Date(this.ViewModel.DateOfBirth).toISOString().split('T')[0],
+                DocumentType : this.ViewModel.SelectedDocumentType.Value,
+                DocumentValue : this.ViewModel.DocumentValue,
+                LastName : this.ViewModel.LastName,
+                Name : this.ViewModel.Name,
+                PersonalEmail : this.ViewModel.PersonalEmail,
+                PersonalPhone : this.ViewModel.PersonalPhone,
+                Role:this.ViewModel.SelectedRole.Id
+            },
+            LoggedUser: 
+            {
+                Role:"UN ROLE",
+                User:"UN USER"
+            },
+            Timestamp:505050,
+            Token:"UN TOKEN"
+        };
+        
         
         if (this.ViewModel.SelectedFile) 
         {
-            request.ProfilePicture = this.ViewModel.SelectedFile;
+            request.Data.ProfilePicture = this.ViewModel.SelectedFile;
         }
-
-        request.Rol = this.ViewModel.SelectedRol.Id;
 
         return request;
     }
@@ -201,7 +218,13 @@ export class PersonalInformation
         
         if(this.ViewModel.FormIsOk)
         {
+            this.ViewModel.BlockedScreen = true;
             this.employeeService.CreateEmployee(this.SetRequestObject())
+                                .pipe(finalize(() => 
+                                    {
+                                        this.ViewModel.BlockedScreen = false;
+                                        this.cd.detectChanges();
+                                    }))
                                 .subscribe(
                                 {
                                     next: (response) => 
@@ -452,14 +475,14 @@ export class PersonalInformation
 
     private ValidateRol()
     {
-        if(this.ViewModel.SelectedRol.Id == 0)
+        if(this.ViewModel.SelectedRole.Id == 0)
         {
-            this.ViewModel.ShowErrorRol = true;
+            this.ViewModel.ShowErrorRole = true;
             this.ViewModel.FormIsOk= false;
         }
         else
         {
-            this.ViewModel.ShowErrorRol = false;
+            this.ViewModel.ShowErrorRole = false;
         }
     }
 }

@@ -58,10 +58,12 @@ export interface PersonalInormationVm
     ErrorsContactPersonPhone:string[];
 
     Roles:UserRolDto[];
-    SelectedRol:UserRolDto;
-    ShowErrorRol:boolean;
+    SelectedRole:UserRolDto;
+    ShowErrorRole:boolean;
 
     FormIsOk:boolean;
 
     ButtonSaveText:string;
+
+    BlockedScreen:boolean;
 }

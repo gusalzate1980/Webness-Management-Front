@@ -42,15 +42,15 @@ export class Lists
 
     static readonly Roles: UserRolDto[]=
     [
-            { Name: 'App Admin', Id: 1, IsEmployeeRol: true },
-            { Name: 'Client Admin', Id: 2, IsEmployeeRol: false },
-            { Name: 'Client Human Resources', Id: 3, IsEmployeeRol: false },
-            { Name: 'Client Tech Manager', Id: 4, IsEmployeeRol: false },
-            { Name: 'Engineer', Id: 5, IsEmployeeRol: true },
-            { Name: 'Financial', Id: 6 , IsEmployeeRol: true},
-            { Name: 'Human Resources', Id: 6, IsEmployeeRol: true },
-            { Name: 'Key Account Manager', Id: 8, IsEmployeeRol: true },
-            { Name: 'Software Manager', Id: 9, IsEmployeeRol: true }
+            { Name: 'App Admin', Id: 1, IsEmployeeRole: true },
+            { Name: 'Client Admin', Id: 2, IsEmployeeRole: false },
+            { Name: 'Client Human Resources', Id: 3, IsEmployeeRole: false },
+            { Name: 'Client Tech Manager', Id: 4, IsEmployeeRole: false },
+            { Name: 'Engineer', Id: 5, IsEmployeeRole: true },
+            { Name: 'Financial', Id: 6 , IsEmployeeRole: true},
+            { Name: 'Human Resources', Id: 6, IsEmployeeRole: true },
+            { Name: 'Key Account Manager', Id: 8, IsEmployeeRole: true },
+            { Name: 'Software Manager', Id: 9, IsEmployeeRole: true }
     ];
 
     static readonly DocumentTypes: DropdownVm[]=

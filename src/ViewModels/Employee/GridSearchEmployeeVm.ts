@@ -6,6 +6,6 @@ export class GridSearchEmployeeVm
     CorporateEmail: string | undefined;
     Area: string | undefined;
     Position: string | undefined;
-    Rol: string | undefined;
+    Role: string | undefined;
     IsSelected: boolean = false;
 }

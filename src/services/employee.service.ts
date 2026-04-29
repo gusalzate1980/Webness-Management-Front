@@ -23,38 +23,42 @@ export class EmployeeService
 
     constructor(private http: HttpClient) {}
 
-    GetListEmployees(request: ApiRequestDto<ListEmployeeRequestDto>): Observable<PaginatorResponseDto<ListEmployeeResponseDto>> 
+    GetListEmployees(request: ApiRequestDto<ListEmployeeRequestDto>): Observable<ApiResponseDto<PaginatorResponseDto<ListEmployeeResponseDto>>> 
     {
         const url = `${this.ApiUrl}Employee/GetListEmployees`;
 
-        return this.http.post<PaginatorResponseDto<ListEmployeeResponseDto>>(url, request);
+        return this.http.post<ApiResponseDto<PaginatorResponseDto<ListEmployeeResponseDto>>>(url, request);
     }
     
-    CreateEmployee(request: CreateEmployeeRequest) : Observable<ApiResponseDto<any>>
+    CreateEmployee(request: ApiRequestDto<CreateEmployeeRequest>) : Observable<ApiResponseDto<any>>
     {
-      const formData = new FormData();
+        const formData = new FormData();
 
-      formData.append('Name', request.Name);
-      formData.append('LastName', request.LastName);
-      formData.append('DocumentType', request.DocumentType.toString());
-      formData.append('DocumentValue', request.DocumentValue);
-      formData.append('PersonalEmail', request.PersonalEmail);
-      formData.append('CorporateEmail', request.CorporateEmail);
-      formData.append('PersonalPhone', request.PersonalPhone);
-      formData.append('CorporatePhone', request.CorporatePhone);
-      formData.append('ContactAddress', request.ContactAddress);
-      formData.append('DateOfBirth', request.DateOfBirth);
-      formData.append('ContactPersonName', request.ContactPersonName);
-      formData.append('ContactPersonPhone', request.ContactPersonPhone);
-      formData.append('Rol', request.Rol.toString());
+        formData.append('Timestamp', request.Timestamp.toString());
+        formData.append('Token', request.Token);
+        formData.append('LoggedUser.User', request.LoggedUser.User);
+        formData.append('LoggedUser.Role', request.LoggedUser.Role);
+        formData.append('Data.Name', request.Data.Name);
+        formData.append('Data.LastName', request.Data.LastName);
+        formData.append('Data.DocumentType', request.Data.DocumentType.toString());
+        formData.append('Data.DocumentValue', request.Data.DocumentValue);
+        formData.append('Data.PersonalEmail', request.Data.PersonalEmail);
+        formData.append('Data.CorporateEmail', request.Data.CorporateEmail);
+        formData.append('Data.PersonalPhone', request.Data.PersonalPhone);
+        formData.append('Data.CorporatePhone', request.Data.CorporatePhone);
+        formData.append('Data.ContactAddress', request.Data.ContactAddress);
+        formData.append('Data.DateOfBirth', request.Data.DateOfBirth);
+        formData.append('Data.ContactPersonName', request.Data.ContactPersonName);
+        formData.append('Data.ContactPersonPhone', request.Data.ContactPersonPhone);
+        formData.append('Data.Role', request.Data.Role.toString());
 
-      if (request.ProfilePicture) 
-      {
-        formData.append('ProfilePicture', request.ProfilePicture);
-      }
+        if (request.Data.ProfilePicture) 
+        {
+          formData.append('Data.ProfilePicture', request.Data.ProfilePicture);
+        }
 
-      const url = `${this.ApiUrl}Employee/AddEmployee`;
-      return this.http.post<ApiResponseDto<any>>(url, formData);
+        const url = `${this.ApiUrl}Employee/AddEmployee`;
+        return this.http.post<ApiResponseDto<any>>(url, formData);
   }
 
   GetBossesByPosition(request: ApiRequestDto<WildCardDto>): Observable<ApiResponseDto<DropdownVm[]>> 

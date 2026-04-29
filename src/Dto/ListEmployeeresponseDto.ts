@@ -8,5 +8,5 @@ export interface  ListEmployeeResponseDto
     DocumentNumber: string;
     Area: string;
     Position: string;
-    Rol: string;
+    Role: string;
 }

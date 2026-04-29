@@ -364,11 +364,11 @@
             <div class="row g-2">
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
                     <p-select   [options]="ViewModel.Roles" 
-                                [(ngModel)]="ViewModel.SelectedRol" 
+                                [(ngModel)]="ViewModel.SelectedRole" 
                                 optionLabel="Name" placeholder="Select a Rol" />
                 </div>
                 <div class="col-12 col-xl-9 col-lg-9 col-md-10 col-sm-12">
-                    @if(ViewModel.ShowErrorRol)
+                    @if(ViewModel.ShowErrorRole)
                     {
                         <p-message severity="warn">
                             <ul>
@@ -389,3 +389,21 @@
         </div>
     </div>
 </div>
+
+{{ViewModel.BlockedScreen}}
+<p-blockUI [blocked]="ViewModel.BlockedScreen">
+
+    @if (ViewModel.BlockedScreen) {
+        <div class="spinner-container">
+
+            <p-progress-spinner
+                strokeWidth="8"
+                fill="transparent"
+                animationDuration=".5s"
+                [style]="{ width: '80px', height: '80px' }">
+            </p-progress-spinner>
+
+        </div>
+    }
+
+</p-blockUI>

@@ -58,7 +58,7 @@ export class SalaryPolicy  implements OnInit
             },
             LoggedUser:
             {
-                Rol:"",
+                Role:"",
                 User:""
             },
             Timestamp:1,
@@ -74,7 +74,7 @@ export class SalaryPolicy  implements OnInit
             },
             LoggedUser:
             {
-                Rol:"",
+                Role:"",
                 User:""
             },
             Timestamp:1,

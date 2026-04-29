@@ -119,7 +119,7 @@ export class CorporateInformation
             LoggedUser:
             {
                 User:"",
-                Rol:""
+                Role:""
             },
             Timestamp:1,
             Token:""
@@ -185,7 +185,7 @@ export class CorporateInformation
             LoggedUser:
             {
                 User:"",
-                Rol:""
+                Role:""
             },
             Timestamp:1,
             Token:""
@@ -305,7 +305,7 @@ export class CorporateInformation
             LoggedUser:
             {
                 User:"",
-                Rol:""
+                Role:""
             },
             Timestamp:1,
             Token:"",
