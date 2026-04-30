@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,6 +17,9 @@ import { ApiRequestDto } from '../../../../Dto/ApiRequestDto';
 import { BlockUI } from "primeng/blockui";
 import { ProgressSpinner } from "primeng/progressspinner";
 import { finalize } from 'rxjs';
+import { GetPersonalInformationResponseDto } from '../../../../Dto/GetPersonalInformationResponseDto';
+import { WildCardDto } from '../../../../Dto/WildCardDto';
+import { ApiResponseDto } from '../../../../Dto/ApiResponseDto';
 
 @Component({
   selector: 'app-personal-information',
@@ -27,7 +30,7 @@ import { finalize } from 'rxjs';
   styleUrl: './personal-information.css',
 })
 
-export class PersonalInformation 
+export class PersonalInformation implements OnInit
 {
     @Output() OnEmployeeCreated = new EventEmitter<number>();
     @Input() IdEmployee:number = 0;
@@ -111,6 +114,79 @@ export class PersonalInformation
             
             ButtonSaveText:"Create Employee"
         };
+    }
+    ngOnInit(): void 
+    {
+        if(this.IdEmployee > 0)
+        {
+            this.ViewModel.ButtonSaveText = "Update Employee";
+            this.GetPersonalInformationByEmployee();
+        }
+    }
+
+    SetPersonalInformationViewModel(response:ApiResponseDto<GetPersonalInformationResponseDto>)
+    {
+        if(response.ResponseValue != null)
+        {
+            let personal: GetPersonalInformationResponseDto =   response.ResponseValue;
+            this.ViewModel.Name = personal.Name;
+            this.ViewModel.ContactAddress = personal.ContactAddress;
+            this.ViewModel.ContactPersonName = personal.ContactPerson;
+            this.ViewModel.ContactPersonPhone = personal.ContactPhone;
+            this.ViewModel.CorporateEmail = personal.CorporateEmail;
+            this.ViewModel.CorporatePhone = personal.CorporatePhone != null ? personal.CorporatePhone : "";
+            this.ViewModel.DateOfBirth = personal.DateOfBirth;
+            this.ViewModel.DocumentValue = personal.DocumentValue;
+            this.ViewModel.ImagePreview = `data:image/jpeg;base64,${response.ResponseValue?.ProfilePicture}`;
+            this.ViewModel.LastName = personal.LastName;
+            this.ViewModel.Name = personal.Name;
+            this.ViewModel.PersonalEmail = personal.PersonalEmail;
+            this.ViewModel.PersonalPhone = personal.PersonalPhone;
+            this.ViewModel.SelectedDocumentType = this.ViewModel.DocumentTypes.filter(x=>x.Value == personal.DocumentType)[0];
+            this.ViewModel.SelectedRole = this.ViewModel.Roles.filter(x=>x.Id == personal.IdRole)[0];
+        }
+        
+    }
+
+    GetPersonalInformationByEmployee()
+    {
+        this.ViewModel.BlockedScreen = true;
+            this.employeeService.GetPersonalInformationByEmployee(this.SetRequestGetPersonalInformationByEmployee())
+                                .pipe(finalize(() => 
+                                    {
+                                        this.ViewModel.BlockedScreen = false;
+                                        this.cd.detectChanges();
+                                    }))
+                                .subscribe(
+                                {
+                                    next: (response) => 
+                                    {
+                                        if (response.ExecutionOk)
+                                        {
+                                            this.SetPersonalInformationViewModel(response)    
+                                        }
+                                        else
+                                        {
+                                            this.messageService.add({
+                                                severity: 'error',
+                                                summary: 'Employee Personal Information',
+                                                detail: response.Errors.join(', '),
+                                                key: 'ce',
+                                                life: 3000
+                                            });
+                                        }
+                                        
+                                    },
+                                    error: err => {
+                                        this.messageService.add({
+                                            severity: 'error',
+                                            summary: 'Employee Creation',
+                                            detail: 'There was an error creating the employee',
+                                            key: 'ce',
+                                            life: 3000
+                                        });
+                                    }
+                                });    
     }
 
     OnFileSelected(event: any): void 
@@ -208,6 +284,26 @@ export class PersonalInformation
             request.Data.ProfilePicture = this.ViewModel.SelectedFile;
         }
 
+        return request;
+    }
+
+    private SetRequestGetPersonalInformationByEmployee(): ApiRequestDto<WildCardDto>
+    {
+        let request: ApiRequestDto<WildCardDto> = 
+        {
+            Data : 
+            {
+                Data : this.IdEmployee.toString()
+            },
+            LoggedUser: 
+            {
+                Role:"UN ROLE",
+                User:"UN USER"
+            },
+            Timestamp:505050,
+            Token:"UN TOKEN"
+        };
+        
         return request;
     }
 

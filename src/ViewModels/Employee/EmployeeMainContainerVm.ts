@@ -1,4 +1,4 @@
-export interface CreateEmployeeVm
+export interface EmployeeMainContainerVm
 {
     CliksOnPi:number;
     CliksOnCi:number;

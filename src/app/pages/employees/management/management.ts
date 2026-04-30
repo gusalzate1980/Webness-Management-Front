@@ -205,10 +205,6 @@ export class Management implements OnInit
         console.log('Create clicked');
     }
 
-    edit() {
-    console.log('Edit', this.ViewModel?.SelectedEmployee);
-    }
-
     delete() {
     console.log('Delete', this.ViewModel?.SelectedEmployee);
     }
@@ -219,7 +215,7 @@ export class Management implements OnInit
 
     private BuildMenu() 
     {
-        const hasSelection = this.ViewModel.SelectedEmployee != undefined;
+        const hasSelection = this.ViewModel.SelectedEmployee.IdEmployee == 0 ? false:true;
         
         this.GridRowOptions = [
             {
@@ -231,7 +227,7 @@ export class Management implements OnInit
                 label: 'Edit',
                 icon: 'pi pi-pencil',
                 visible: hasSelection,
-                command: () => this.edit()
+                routerLink: ['/main/employees/management/update-employee/'+this.ViewModel.SelectedEmployee.IdEmployee]
             },
             {
                 label: 'Delete',

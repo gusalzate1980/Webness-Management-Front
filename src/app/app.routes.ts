@@ -7,6 +7,7 @@ import { MyFeedBack } from './pages/employees/Career/my-feed-back/my-feed-back';
 import { OneOnOne } from './pages/employees/Career/one-on-one/one-on-one';
 import { CreateEmployee } from './pages/employees/management/create-employee/create-employee';
 import { SalaryPolicy } from './pages/human-resources/salary-policy/salary-policy';
+import { UpdateEmployee } from './pages/employees/management/update-employee/update-employee';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -24,6 +25,10 @@ export const routes: Routes = [
         {
             path: 'management/create-employee',
             component: CreateEmployee
+        },
+        {
+            path: 'management/update-employee/:id',
+            component: UpdateEmployee
         },
         {
             path: 'career',

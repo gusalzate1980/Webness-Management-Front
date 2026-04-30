@@ -1,0 +1,54 @@
+<p-toast position="center" key="ce" />
+<div class="card">
+  <div class="container-fluid mt-2">
+
+    <!-- Breadcrumb -->
+    <div class="row g-2">
+      <div class="col-12">
+        <p-breadcrumb [model]="BreadCrumb" [home]="Home"></p-breadcrumb>
+      </div>
+
+      <p-card class="col-12">
+            <div class="row g-2">
+                <div class="col-12">
+                    <p-tabs [(value)]="ViewModel.ActiveTab" (valueChange)="OnTabChange($event)">
+                        <p-tablist>
+                            <p-tab value="PI">
+                              <i class="pi pi-address-book mr-2"></i>
+                              Personal Information
+                            </p-tab>
+                            <p-tab value="CI" [disabled]="ViewModel.DisabledCi">
+                              <i class="pi pi-file mr-2"></i>
+                              Corporate Information
+                            </p-tab>
+                            <p-tab value="WE" [disabled]="ViewModel.DisabledWe">
+                              <i class="pi pi-briefcase mr-2"></i>
+                              Work Experience
+                            </p-tab>
+                            <p-tab value="ED" [disabled]="ViewModel.DisabledEd">
+                              <i class="pi pi-graduation-cap mr-2"></i>  
+                              Education
+                            </p-tab>
+                        </p-tablist>
+                        <p-tabpanels>
+                          <p-tabpanel value="PI">
+                              <app-personal-information [IdEmployee]="ViewModel.IdEmployee"
+                                                        (OnEmployeeCreated)="ActivateTabs($event);"></app-personal-information>
+                          </p-tabpanel>
+                          <p-tabpanel value="CI">
+                              <app-corporate-information [IdEmployee]="ViewModel.IdEmployee"></app-corporate-information>
+                          </p-tabpanel>
+                          <p-tabpanel value="WE">
+                              <app-work-experience></app-work-experience>
+                          </p-tabpanel>
+                          <p-tabpanel value="ED">
+                              <app-education></app-education>
+                          </p-tabpanel>
+                        </p-tabpanels>
+                    </p-tabs>
+                </div>
+            </div>
+      </p-card>
+    </div>
+  </div>
+</div>

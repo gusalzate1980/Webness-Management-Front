@@ -12,6 +12,7 @@ import { CreateEmployeeRequest } from '../Dto/CreateEmployeeRequest';
 import { WildCardDto } from '../Dto/WildCardDto';
 import { DropdownVm } from '../ViewModels/Common/DropdownVm';
 import { AddCorporateInformationRequestDto } from '../Dto/AddCorporateInformationRequestDto';
+import { GetPersonalInformationResponseDto } from '../Dto/GetPersonalInformationResponseDto';
 
 @Injectable({
   providedIn: 'root'
@@ -61,17 +62,25 @@ export class EmployeeService
         return this.http.post<ApiResponseDto<any>>(url, formData);
   }
 
-  GetBossesByPosition(request: ApiRequestDto<WildCardDto>): Observable<ApiResponseDto<DropdownVm[]>> 
-  {
-      const url = `${this.ApiUrl}Employee/GetBossesByPosition`;
+    GetBossesByPosition(request: ApiRequestDto<WildCardDto>): Observable<ApiResponseDto<DropdownVm[]>> 
+    {
+        const url = `${this.ApiUrl}Employee/GetBossesByPosition`;
 
-      return this.http.post<ApiResponseDto<DropdownVm[]>>(url, request);
-  }
+        return this.http.post<ApiResponseDto<DropdownVm[]>>(url, request);
+    }
 
-  AddCorporateInformation(request: ApiRequestDto<AddCorporateInformationRequestDto>): Observable<ApiResponseDto<WildCardDto>> 
-  {
-      const url = `${this.ApiUrl}Employee/AddCorporateInformation`;
+    AddCorporateInformation(request: ApiRequestDto<AddCorporateInformationRequestDto>): Observable<ApiResponseDto<WildCardDto>> 
+    {
+        const url = `${this.ApiUrl}Employee/AddCorporateInformation`;
 
-      return this.http.post<ApiResponseDto<WildCardDto>>(url, request);
-  }
+        return this.http.post<ApiResponseDto<WildCardDto>>(url, request);
+    
+    }
+
+    GetPersonalInformationByEmployee(request: ApiRequestDto<WildCardDto>): Observable<ApiResponseDto<GetPersonalInformationResponseDto>> 
+    {
+        const url = `${this.ApiUrl}Employee/GetPersonalInformationByEmployee`;
+
+        return this.http.post<ApiResponseDto<GetPersonalInformationResponseDto>>(url, request);
+    }
 }

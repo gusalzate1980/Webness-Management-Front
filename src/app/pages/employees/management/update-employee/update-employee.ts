@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import {  BreadcrumbModule } from 'primeng/breadcrumb';
 import { RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
@@ -10,22 +10,27 @@ import { CorporateInformation } from "../../../../components/employee/corporate-
 import { WorkExperience } from "../../../../components/employee/work-experience/work-experience";
 import { Education } from "../../../../components/employee/education/education";
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Toast } from "primeng/toast";
 
 @Component({
-  selector: 'app-create-employee',
-  imports: [BreadcrumbModule, RouterModule, CardModule, TabsModule, PersonalInformation, CorporateInformation, WorkExperience, Education, FormsModule],
+  selector: 'app-update-employee',
+  imports: [BreadcrumbModule, RouterModule, CardModule, TabsModule, PersonalInformation, CorporateInformation, WorkExperience, Education, FormsModule, Toast],
+  providers:[MessageService],
   standalone:true,
-  templateUrl: './create-employee.html',
-  styleUrl: './create-employee.css',
+  templateUrl: './update-employee.html',
+  styleUrl: './update-employee.css',
 })
-export class CreateEmployee implements OnInit
+export class UpdateEmployee implements OnInit
 {
     BreadCrumb: MenuItem[] = [];
     Home: MenuItem | undefined;
 
     ViewModel: EmployeeMainContainerVm;
 
-    constructor()
+    constructor(private Route: ActivatedRoute,
+                private MessageService: MessageService
+    )
     {
         this.ViewModel = 
         {
@@ -44,7 +49,28 @@ export class CreateEmployee implements OnInit
         };
     }
 
-    ngOnInit() {
+    private HandleEmployeeIdParam()
+    {
+        const param = this.Route.snapshot.paramMap.get('id');
+        if (param && !isNaN(Number(param)) && Number(param) != 0) 
+        {
+            this.ViewModel.IdEmployee = Number(param);
+        } 
+        else 
+        {
+            this.MessageService.add({
+                                      severity: 'error',
+                                      summary: 'Update Employee',
+                                      detail: "Invalid parameter value",
+                                      key: 'ce',
+                                      life: 3000
+                                  });  
+        }
+    }
+
+    ngOnInit() 
+    {
+        this.HandleEmployeeIdParam();
         this.BreadCrumb = 
         [
           {
@@ -61,7 +87,7 @@ export class CreateEmployee implements OnInit
               icon: 'pi pi-plus'
           }];
         this.Home = { icon: 'pi pi-home' };
-      }
+    }
 
     OnTabChange(tab: any) 
     {
