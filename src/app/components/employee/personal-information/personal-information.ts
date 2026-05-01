@@ -145,7 +145,6 @@ export class PersonalInformation implements OnInit
             this.ViewModel.SelectedDocumentType = this.ViewModel.DocumentTypes.filter(x=>x.Value == personal.DocumentType)[0];
             this.ViewModel.SelectedRole = this.ViewModel.Roles.filter(x=>x.Id == personal.IdRole)[0];
         }
-        
     }
 
     GetPersonalInformationByEmployee()
